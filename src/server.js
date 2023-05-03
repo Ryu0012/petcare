@@ -1,5 +1,4 @@
-import "./db";
-import "./models/Video";
+// import "./db";
 import express from "express";
 import morgan from "morgan";
 
@@ -16,7 +15,6 @@ const logger = morgan("dev");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use("/", globalRouter);
-// app.use("/users", userRouter);
 
 const handleListening = () =>
   console.log(`Server listenting on port http://localhost:${PORT}`);
