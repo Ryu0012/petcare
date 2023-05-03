@@ -1,0 +1,32 @@
+{
+  "name": "petcare",
+  "version": "1.0.0",
+  "description": "capstone design",
+  "main": "index.js",
+  "scripts": {
+    "win": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryu0012/petcare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryu0012/petcare/issues"
+  },
+  "homepage": "https://github.com/Ryu0012/petcare#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.4",
+    "nodemon": "^2.0.20"
+  }
+}
