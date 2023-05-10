@@ -2,13 +2,10 @@ const express = require("express");
 const loginRouter = express.Router();
 const loginController = require("../controllers/loginController");
 
-//첫 시작
-loginRouter.get("/", loginController.start);
+//로그인 페이지 [ /login ]
+loginRouter.get("/", loginController.getLogin);
 
-//로그인 페이지
-loginRouter.get("/login", loginController.getLogin);
-
-//로그인 이후 유저 페이지
-loginRouter.get("/users", loginController.getUser);
+//회원 가입 페이지 [ /login/user ]
+loginRouter.get("/register", loginController.getRegister);
 
 module.exports = loginRouter;

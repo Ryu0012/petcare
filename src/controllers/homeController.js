@@ -1,9 +1,9 @@
-const getHome1 = (req, res) => {
-  return res.render("home/home");
+const getHomeBefore = (req, res) => {
+  return res.render("home/home_after");
 };
-module.exports.getHome1 = getHome1;
+module.exports.getHomeBefore = getHomeBefore;
 
-const getHome2 = (req, res) => {
-  return res.render("home/home2");
+const getHomeAfter = (req, res) => {
+  return res.render("home/home_before");
 };
-module.exports.getHome2 = getHome2;
+module.exports.getHomeAfter = getHomeAfter;
