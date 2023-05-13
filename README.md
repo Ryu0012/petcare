@@ -2,18 +2,40 @@
 
 ## screen composition diagram
 
+[globalRouter]
+
 - / -> home
 - /login -> login
-- /profile -> pet profile
 
-- /user/:id -> personal user
-- /messenger -> messenger
-- /healthcare -> healthcare
-- /healthcare/:id
+[userRouter]
 
-- /iot -> Internet of Things
+- /user/choice
+- /user/edit
+- /user/edit/:id
 
-- /edit -> edit (user, pet)
-- /edit/:id -> personal edit (user)
-- /edit/pet -> edit(pet)
-- /edit/pet/:id -> each of edit(pet)
+[petRouter]
+
+- /pet/detail
+- /pet/edit
+- /pet/edit/:id
+
+[familyRouter]
+
+- /family -> message & calendar
+
+[iotRouter]
+
+- /iot
+- /iot/edit
+
+=============================
+
+## dependencies, devDependencies
+
+- ejs
+- express
+- mongoose: DB
+- morgan: HTTP request logger middleware for nodejs
+
+- babel - Javascript compiler.
+- nodemon - node monitor 파일이 수정되면 노드 애플리케이션 재시작
