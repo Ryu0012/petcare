@@ -8,7 +8,7 @@ import petRouter from "./routers/petRouter";
 import familyRouter from "./routers/familyRouter";
 import iotRouter from "./routers/iotRouter";
 
-const PORT = 5296;
+const PORT = 5000;
 
 const app = express();
 
