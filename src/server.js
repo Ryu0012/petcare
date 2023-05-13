@@ -8,12 +8,13 @@ import petRouter from "./routers/petRouter";
 import familyRouter from "./routers/familyRouter";
 import iotRouter from "./routers/iotRouter";
 
-const PORT = 5000;
+const PORT = 5296;
 
 const app = express();
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/views"));
 
 const logger = morgan("dev");
 app.use(logger);
