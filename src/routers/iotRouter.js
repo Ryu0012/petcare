@@ -1,8 +1,10 @@
-const express = require("express");
+import express from "express";
+import { iot, edit } from "../controllers/iotController";
+
+//iot 관리 page
 const iotRouter = express.Router();
-const iotController = require("../controllers/iotController");
 
-//iot 관리 페이지
-iotRouter.get("/", iotController.getIot);
+iotRouter.get("/", iot);
+iotRouter.get("/edit", edit);
 
-module.exports = iotRouter;
+export default iotRouter;

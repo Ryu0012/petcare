@@ -1,5 +1,3 @@
 //iot 페이지
-const getIot = (req, res) => {
-  return res.render("iot/iotCheck");
-};
-module.exports.getIot = getIot;
+export const iot = (req, res) => res.render("iot/iotCheck");
+export const edit = (req, res) => res.render("iot/iotEdit");
