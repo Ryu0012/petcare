@@ -1,14 +1,12 @@
 import mongoose from "mongoose";
 
-// mongoose.connect("mongodb://127.0.0.1:27017/petcare", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+const db = mongoose.connection;
 
-// const db = mongoose.connection;
+mongoose.set("strictQuery", false);
+mongoose.connect("mongodb://127.0.0.1:27017/petcare");
 
+const handleError = (error) => console.log("❌ DB Error", error);
 const handleOpen = () => console.log("✅ Connected to DB");
-const handleError = (error) => console.log("DB Error", error);
 
-// db.on("error", handleError);
-// db.once("open", handleOpen);
+db.on("error", handleError);
+db.once("open", handleOpen);

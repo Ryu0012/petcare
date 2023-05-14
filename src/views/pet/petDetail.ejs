@@ -9,7 +9,7 @@
   <body>
     <a href="/"><h1>Pet Care</h1></a>
     <div>
-      <% for(var i=0; i< pets.length; i++) { %>
+      <% if(pets == null){ %> <% for(var i=0; i< pets.length; i++) { %>
       <div class="container">
         <h3><span><%= pets[i].id %>.</span> <%= pets[i].name %></h3>
         <ul>
@@ -20,6 +20,8 @@
         </ul>
       </div>
       <div><a href="/pet/edit/<%= pets[i].id %>">edit &rarr;</a></div>
+      <% }}else { %>
+      <li>Sorry Nothing found.</li>
       <% } %>
     </div>
   </body>
