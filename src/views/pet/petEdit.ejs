@@ -4,9 +4,62 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
     <title>Pet Care : Pet Edit</title>
   </head>
   <body>
-    <h1>pet 설정 페이지</h1>
+    <h1>Change Pet Edit</h1>
+    <form method="post">
+      <div>
+        <label for="input_name">Name</label>
+        <input
+          name="name"
+          type="text"
+          id="input_name"
+          placeholder="이름"
+          value="<%= pet.name%>"
+          required
+        />
+      </div>
+      <div>
+        <label for="input_age">Age</label>
+        <input
+          type="text"
+          name="age"
+          id="input_age"
+          value="<%= pet.age%>"
+          placeholder="나이"
+        />
+      </div>
+      <div>
+        <label for="input_birth">Birth</label>
+        <input
+          type="text"
+          name="birth"
+          id="input_birth"
+          value="<%= pet.birth%>"
+          placeholder="생일"
+        />
+      </div>
+      <div>
+        <label for="input_type">Type</label>
+        <input
+          type="text"
+          name="type"
+          id="input_type"
+          value="<%= pet.type%>"
+          placeholder="종"
+          required
+        />
+        <input
+          type="text"
+          name="type_details"
+          id="input_type"
+          value="<%= pet.type_details%>"
+          placeholder="품종"
+        />
+      </div>
+      <button type="submit">submit</button>
+    </form>
   </body>
 </html>

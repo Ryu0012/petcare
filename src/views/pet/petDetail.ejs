@@ -7,6 +7,20 @@
     <title>Pet Care : Pet Detail</title>
   </head>
   <body>
-    <h1>pet 상세 페이지</h1>
+    <a href="/"><h1>Pet Care</h1></a>
+    <div>
+      <% for(var i=0; i< pets.length; i++) { %>
+      <div class="container">
+        <h3><span><%= pets[i].id %>.</span> <%= pets[i].name %></h3>
+        <ul>
+          <li>age: <%= pets[i].age%></li>
+          <li>birth: <%= pets[i].birth%></li>
+          <li>type: <%= pets[i].type%></li>
+          <li>type_details: <%= pets[i].type_details%></li>
+        </ul>
+      </div>
+      <div><a href="/pet/edit/<%= pets[i].id %>">edit &rarr;</a></div>
+      <% } %>
+    </div>
   </body>
 </html>

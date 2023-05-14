@@ -10,18 +10,16 @@
 [userRouter]
 
 - /user/choice
-- /user/edit
 - /user/edit/:id
 
 [petRouter]
 
-- /pet/detail
-- /pet/edit
+- /pet
 - /pet/edit/:id
 
 [familyRouter]
 
-- /family -> message & calendar
+- /family -> messege & calendar
 
 [iotRouter]
 
