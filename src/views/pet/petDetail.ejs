@@ -4,22 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .under_line {
+        width: 100%;
+        border-bottom: 2px solid black;
+      }
+      .flex_container {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+      }
+    </style>
     <title>Pet Care : Pet Detail</title>
   </head>
   <body>
     <a href="/"><h1>Pet Care</h1></a>
+    <a href="upload"><button>Pet Upload</button></a>
     <div>
-      <% if(pets == null){ %> <% for(var i=0; i< pets.length; i++) { %>
+      <% if(pets != ""){ %> <% for(var i=0; i< pets.length; i++) { %>
       <div class="container">
-        <h3><span><%= pets[i].id %>.</span> <%= pets[i].name %></h3>
+        <h3><%= pets[i].name %></h3>
         <ul>
           <li>age: <%= pets[i].age%></li>
           <li>birth: <%= pets[i].birth%></li>
-          <li>type: <%= pets[i].type%></li>
-          <li>type_details: <%= pets[i].type_details%></li>
+          <li>type: <%= pets[i].type.value%></li>
+          <li>type_details: <%= pets[i].type.details%></li>
+          <li>introduce</li>
+          <ul>
+            <% for(var j = 0; j< pets[i].introduce.length; j++) { %>
+            <li><%= pets[i].introduce[j] %></li>
+            <% } %>
+          </ul>
         </ul>
       </div>
-      <div><a href="/pet/edit/<%= pets[i].id %>">edit &rarr;</a></div>
+      <div class="flex_container">
+        <a href="remove/<%= pets[i].id %>"><button>delete</button></a>
+        <a href="edit/<%= pets[i].id %>"><button>edit &rarr;</button></a>
+      </div>
+      <div class="under_line"></div>
       <% }}else { %>
       <li>Sorry Nothing found.</li>
       <% } %>

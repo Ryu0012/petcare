@@ -1,11 +1,19 @@
 import mongoose from "mongoose";
 
+//default == value
 const petSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-  age: Number,
-  birth: Date,
-  type: [{ value: String, type_details: String }],
+  name: { type: String, require: true, trim: true },
+  age: { type: Number, trim: true },
+  birth: { type: Date, trim: true },
+  type: {
+    value: { type: String, trim: true },
+    details: { type: String, trim: true },
+  },
+  introduce: [{ type: String, trim: true }],
+});
+
+petSchema.static("formatIntroduce", function (introduce) {
+  return introduce.split(",");
 });
 
 const Pet = mongoose.model("Pet", petSchema);

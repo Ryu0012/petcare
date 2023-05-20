@@ -47,7 +47,7 @@
           type="text"
           name="type"
           id="input_type"
-          value="<%= pet.type%>"
+          value="<%= pet.type.value%>"
           placeholder="종"
           required
         />
@@ -55,8 +55,18 @@
           type="text"
           name="type_details"
           id="input_type"
-          value="<%= pet.type_details%>"
+          value="<%= pet.type.details%>"
           placeholder="품종"
+        />
+      </div>
+      <div>
+        <label for="input_introduce"> introduce (,) </label>
+        <input
+          type="text"
+          value="<%= pet.introduce %>"
+          placeholder="반려동물을 소개해주세요!"
+          name="introduce"
+          id="input_introduce"
         />
       </div>
       <button type="submit">submit</button>
