@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import "./models/Pet";
 const db = mongoose.connection;
 
 mongoose.set("strictQuery", false);
