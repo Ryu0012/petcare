@@ -1,8 +1,8 @@
 import Pet from "../models/Pet";
 
-export const detail = async (req, res) => {
+export const view = async (req, res) => {
   const pets = await Pet.find({});
-  return res.render("pet/petDetail", { pets });
+  return res.render("pet/view", { pageTitle: "View", pets });
 };
 export const getEdit = async (req, res) => {
   const { id } = req.params;
@@ -10,7 +10,7 @@ export const getEdit = async (req, res) => {
   if (!pet) {
     return res.render("404", { pageTitle: "Pet not found." });
   }
-  return res.render("pet/petEdit", { pet });
+  return res.render("pet/edit", { pet });
 };
 
 export const postEdit = async (req, res) => {
@@ -34,7 +34,7 @@ export const postEdit = async (req, res) => {
 };
 
 export const getUpload = (req, res) =>
-  res.render("pet/petUpload", { pageTitle: "Upload Pet" });
+  res.render("pet/upload", { pageTitle: "Upload Pet" });
 
 export const postUpload = async (req, res) => {
   const { name, age, birth, type, type_details, introduce } = req.body;
@@ -53,7 +53,7 @@ export const postUpload = async (req, res) => {
     return res.redirect("/pet");
   } catch (error) {
     console.log(error);
-    return res.render("pet/petUpload", {
+    return res.render("pet/upload", {
       pageTitle: "Upload Pet",
       // errorMessage: error._message,
     });

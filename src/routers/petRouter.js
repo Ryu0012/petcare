@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  detail,
+  view,
   getEdit,
   postEdit,
   getUpload,
@@ -10,7 +10,7 @@ import {
 
 const petRouter = express.Router();
 
-petRouter.get("/", detail);
+petRouter.get("/", view);
 petRouter.route("/upload").get(getUpload).post(postUpload);
 petRouter.route("/remove/:id([0-91-f]{24})").get(deletePet);
 petRouter.route("/edit/:id([0-91-f]{24})").get(getEdit).post(postEdit);
