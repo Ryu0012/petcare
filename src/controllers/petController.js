@@ -8,7 +8,7 @@ export const getEdit = async (req, res) => {
   const { id } = req.params;
   const pet = await Pet.findById(id);
   if (!pet) {
-    return res.render("404", { pageTitle: "Pet not found." });
+    return res.status(404).render("404", { pageTitle: "Pet not found." });
   }
   return res.render("pet/edit", { pet });
 };
@@ -18,7 +18,7 @@ export const postEdit = async (req, res) => {
   const { name, age, birth, type, type_details, introduce } = req.body;
   const pet = await Pet.exists({ _id: id });
   if (!pet) {
-    return res.render("404", { pageTitle: "Pet not found." });
+    return res.status(404).render("404", { pageTitle: "Pet not found." });
   }
   await Pet.findByIdAndUpdate(id, {
     name,
@@ -34,7 +34,7 @@ export const postEdit = async (req, res) => {
 };
 
 export const getUpload = (req, res) =>
-  res.render("pet/upload", { pageTitle: "Upload Pet" });
+  res.render("pet/upload", { pageTitle: "Upload Pet", errorMessage: "" });
 
 export const postUpload = async (req, res) => {
   const { name, age, birth, type, type_details, introduce } = req.body;
@@ -52,10 +52,9 @@ export const postUpload = async (req, res) => {
     console.log(introduce);
     return res.redirect("/pet");
   } catch (error) {
-    console.log(error);
     return res.render("pet/upload", {
       pageTitle: "Upload Pet",
-      // errorMessage: error._message,
+      errorMessage: error._message,
     });
   }
 };
