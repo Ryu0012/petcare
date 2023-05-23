@@ -1,11 +1,247 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>HTML Intro</title>
-  </head>
+    <meta charset="utf-8" />
+    <style>
+      /* FullCalendar 컨테이너 스타일 */
+      #calendar {
+        width: 25%;
+        float: left;
+      }
 
+      /* 이벤트 입력 폼 스타일 */
+      #eventInput {
+        width: 30%;
+        float: left;
+        margin-left: 10px;
+        display: none;
+      }
+      #eventContents {
+        font-size: 10px; /* 크게 설정할 폰트 크기 */
+        height: 200px; /* 높이 조정 */
+      }
+      #eventClick {
+        font-size: 10px; /* 크게 설정할 폰트 크기 */
+        float: left;
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
+    <script>
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var start, end, allDay;
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          },
+          initialDate: "2023-01-12",
+          navLinks: true,
+          selectable: true,
+          selectMirror: true,
+
+          select: function (arg) {
+            start = arg.start;  //달력 시작 포인트
+            end = arg.end;      //달력 정착 포인트
+            allDay = arg.allDay;//달력 하루 or 부분
+
+
+            var eventInputDiv = document.getElementById("eventInput");
+            eventInputDiv.style.display = "block";
+
+            var selectedDateDiv = document.getElementById("selectedDate");
+            selectedDateDiv.textContent =
+              "Selected Date: " + start.toLocaleString();
+
+            var selectedTimeDiv = document.getElementById("selectedTime");
+            selectedTimeDiv.textContent =
+              "Selected Time: " +
+              start.toLocaleString() +
+              " - " +
+              end.toLocaleString();
+
+            var allDayDiv = document.getElementById("selectedAllDay");
+            allDayDiv.textContent = "All Day: " + (allDay ? "Yes" : "No");
+          },
+
+          eventClick: function (arg) {
+            // if (confirm("Are you sure you want to delete this event?")) {
+            //   arg.event.remove();
+            // }
+            var eventClickDiv = document.getElementById("eventClick");
+            eventClickDiv.style.display = "block";
+
+
+            var startDate = new Date(arg.event.start);
+            var endDate = new Date(arg.event.end);
+
+            // Display clicked event details
+            document.getElementById("clickedDate").textContent = "Selected Date: " + startDate.toLocaleDateString();
+            document.getElementById("clickedTime").textContent = "Selected Time: " + startDate.toLocaleTimeString() + " - " + endDate.toLocaleTimeString();
+            document.getElementById("clickedAllday").textContent = "All Day: " + (arg.event.allDay ? "Yes" : "No");
+            document.getElementById("clickedTitle").textContent = "Selected Title: " + arg.event.title;
+
+            //주제, 시작점, 끝을 통한 eventContents 출력
+            <%for(var data of results) { %>
+              if("<%=data.start%>" === startDate.toISOString() && "<%=data.end%>"===endDate.toISOString() && "<%=data.title%>"===arg.event.title) {
+                document.getElementById("clickedContents").textContent = "<%=data.eventContents%>";
+                const id = <%=data.id%>;
+                console.log(id);
+              }
+            <%}%>
+          },
+          editable: true,
+          dayMaxEvents: true,
+          events: [
+            <% for (var event of results) { %>
+              <% if (event.type === 'common') { %>
+                  {
+                    allDay: <%= event.allDay === 1 ? true : false %>,
+                    start: '<%= event.start %>',
+                    end: '<%= event.end %>',
+                    title: '<%= event.title %>',
+                    color: 'orange',
+                    // contents: '<%=event.eventContents%>',
+                  },
+                <% } else { %>
+                  {
+                    allDay: <%= event.allDay === 1 ? true : false %>,
+                    start: '<%= event.start %>',
+                    end: '<%= event.end %>',
+                    title: '<%= event.title %>',
+                  },
+              <% } %>
+            <% } %>
+          ],
+        });
+
+        calendar.render();
+
+        //114-171 버튼 클릭시 데이터 post
+        var addEventButton = document.getElementById("addEventButton");
+        addEventButton.addEventListener("click", function () {
+          var titleInput = document.getElementById("eventTitle");       //달력 제목
+          var contentsInput = document.getElementById("eventContents"); //달력 세부 사항 내용
+          var commonTypeInput = document.getElementById("commonType");  //달력 작성 반환-> commom , me
+
+          var title = titleInput.value.trim();
+          var contents = contentsInput.value.trim();
+          var type = commonTypeInput.checked ? "common" : "me";
+
+          if (title && contents && type) {
+            calendar.addEvent({
+              title: title,
+              start: start,
+              end: end,
+              allDay: allDay,
+            });
+
+            var eventData = {
+              start: start.toISOString(), //달력 시작
+              end: end.toISOString(),     //달력 종료
+              allDay: allDay,             //달력 하루종일인지 파악
+              title: title,               //달력 제목
+              contents: contents,         //달력 세부 내용
+              type: type,                 // 타입 - 가족 공통 , 내꺼 전용
+            };
+
+            //버튼 데이터 전송
+            fetch("/family/add", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(eventData),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  console.log("Event data has been successfully posted.");
+                  // 여기에서 필요한 추가 작업을 수행할 수 있습니다.
+                } else {
+                  console.log("Failed to post event data.");
+                }
+              })
+              .catch((error) => {
+                console.log(
+                  "An error occurred while posting event data:",
+                  error
+                );
+              });
+
+            calendar.unselect();
+
+            titleInput.value = "";
+            contentsInput.value = "";
+            commonTypeInput.checked = false;
+            var eventInputDiv = document.getElementById("eventInput");
+            eventInputDiv.style.display = "none";
+          }
+        });
+
+        document.getElementById("deleteButton").addEventListener("click", function() {
+          document.getElementById("eventInput").style.display = "none";
+        });
+
+        document.getElementById("deleteClickedButton").addEventListener("click", function() {
+          document.getElementById("eventClick").style.display = "none";
+        });
+
+      });
+    </script>
+  </head>
   <body>
-    <h1>가족 페이지</h1>
+    <div id="calendar"></div>
+
+    <div id="eventInput">
+      <button id="deleteButton">delete Event</button>
+      <div id="selectedDate"></div>
+      <div id="selectedTime"></div>
+      <div id="selectedAllDay"></div>
+      <form id="eventForm">
+        <input type="text" id="eventTitle" placeholder="주제" required /><br />
+        <div>
+          <input
+            type="radio"
+            id="commonType"
+            name="eventType"
+            value="common"
+            required
+          />
+          <label for="commonType">공통</label>
+          <input
+            type="radio"
+            id="meType"
+            name="eventType"
+            value="me"
+            required
+          />
+          <label for="meType">나</label>
+        </div>
+        <input
+          type="text"
+          id="eventContents"
+          placeholder="세부 내용"
+          required
+        />
+        <br />
+        <button id="addEventButton">Add Event</button>
+      </form>
+    </div>
+    <div id="eventClick">
+      <button id="deleteClickedButton">delete Event</button>
+      <div id="clickedDate"></div>
+      <div id="clickedTime"></div>
+      <div id="clickedAllday"></div>
+      <div id="clickedTitle"></div>
+      <div id="clickedContents"></div>
+      <br />
+      <button id="updateEventButton">Update Event</button>
+      <button id="removeEventButton">Remove Event</button>
+    </div>
   </body>
 </html>

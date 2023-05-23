@@ -1,13 +1,19 @@
-import express from "express";
+const express = require("express");
+const bodyParser = require("body-parser");
+const familycareController = require("../controllers/familycareController");
 
-const familyRouter = express.Router();
+const familycareRouter = express.Router();
 
-import { getFamilycare } from "../controllers/familycareController";
+// body-parser 미들웨어를 사용하여 요청 본문(body)을 파싱합니다.
+familycareRouter.use(bodyParser.urlencoded({ extended: true }));
 
-// 임의로 해뒀습니다. 컨트롤러 연결해서 작업하시면 됩니다.
-// const handleFamily = (req, res) => res.send("calendar");
+// JSON 형식의 요청 본문을 파싱합니다
+familycareRouter.use(bodyParser.json());
 
-// http://localhost:5000/family
-familyRouter.get("/", getFamilycare);
+// 가족 소통 페이지 라우트
+familycareRouter.get("/", familycareController.getFamilycare);
 
-export default familyRouter;
+// 달력 내용 추가를 위한 페이지 라우트
+familycareRouter.post("/add", familycareController.addFamilycare);
+
+module.exports = familycareRouter;

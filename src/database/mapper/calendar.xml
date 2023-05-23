@@ -8,11 +8,13 @@
   </insert>
  <select id="selectEventsByType" resultType="Calendar">
     SELECT
+      id,
       start,
       end,
       title,
       type,
-      allDay
+      allDay,
+      eventContents
     FROM
       calendar
     WHERE
