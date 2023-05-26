@@ -122,7 +122,7 @@ const updateFamilycare = (req, res) => {
   const user = "sanghee"; //session 값 받아서 수정하기
   const updateID = req.body.id;
   const updateContents = req.body.contents;
-  const updateType = req.body.type;
+  var updateType = req.body.type;
   if (updateType !== "common") {
     updateType = user;
   }
