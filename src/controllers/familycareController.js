@@ -32,7 +32,7 @@ const getFamilycare = (req, res) => {
     }
 
     // 결과 출력
-    console.log(results);
+    // console.log(results);
     // console.log(fields);
 
     // EJS 파일 렌더링 및 결과 전달
@@ -82,5 +82,84 @@ const addFamilycare = (req, res) => {
     }
   });
 };
-
 module.exports.addFamilycare = addFamilycare;
+
+const deleteFamilycare = (req, res) => {
+  const eventId = req.body.id;
+
+  console.log(eventId);
+
+  // SQL 파라미터
+  const parameter = {
+    id: eventId,
+  };
+
+  // SQL문 가져오기
+  const format = { language: "sql", indent: "  " };
+  const query = mybatisMapper.getStatement(
+    "CalendarMapper",
+    "deleteCalendar",
+    parameter,
+    format
+  );
+
+  // 실행
+  maria.query(query, function (err, results, fields) {
+    if (err) {
+      console.error("An error occurred while executing the query:", err);
+      res.status(500).json({
+        error: "데이터베이스에서 이벤트를 삭제하는 데 실패했습니다.",
+      });
+    } else {
+      console.log("이벤트가 성공적으로 삭제되었습니다.");
+      res.status(200).json({ message: "이벤트가 성공적으로 삭제되었습니다." });
+    }
+  });
+};
+module.exports.deleteFamilycare = deleteFamilycare;
+
+const updateFamilycare = (req, res) => {
+  const user = "sanghee"; //session 값 받아서 수정하기
+  const updateID = req.body.id;
+  const updateContents = req.body.contents;
+  const updateType = req.body.type;
+  if (updateType !== "common") {
+    updateType = user;
+  }
+
+  console.log(updateID);
+  console.log(updateContents);
+  console.log(updateType);
+
+  // SQL 파라미터
+  const parameter = {
+    id: updateID,
+    eventContents: updateContents,
+    type: updateType,
+  };
+
+  // SQL문 가져오기
+  const format = { language: "sql", indent: "  " };
+  const query = mybatisMapper.getStatement(
+    "CalendarMapper",
+    "updateCalendar",
+    parameter,
+    format
+  );
+
+  // 실행
+  maria.query(query, function (err, results, fields) {
+    if (err) {
+      console.error("An error occurred while executing the query:", err);
+      res.status(500).json({
+        error: "데이터베이스에서 이벤트를 업데이트하는 데 실패했습니다.",
+      });
+    } else {
+      console.log("이벤트가 성공적으로 업데이트되었습니다.");
+      res
+        .status(200)
+        .json({ message: "이벤트가 성공적으로 업데이트되었습니다." });
+    }
+  });
+};
+module.exports.updateFamilycare = updateFamilycare;

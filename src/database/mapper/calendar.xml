@@ -20,4 +20,22 @@
     WHERE
       (type = 'common' OR type = #{name})
   </select>
+  <delete id="deleteCalendar" parameterType="Calendar">
+  DELETE FROM calendar
+  WHERE id = #{id}
+  </delete>
+
+  <update id="updateCalendar" parameterType="Calendar">
+    UPDATE
+      calendar
+    SET
+      type = #{type},
+      eventContents = #{eventContents}
+    WHERE
+      id = #{id}
+  </update>
+
+
+
+
 </mapper>

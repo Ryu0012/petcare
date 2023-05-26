@@ -16,4 +16,10 @@ familycareRouter.get("/", familycareController.getFamilycare);
 // 달력 내용 추가를 위한 페이지 라우트
 familycareRouter.post("/add", familycareController.addFamilycare);
 
+//달력 삭제를 위한 라우트
+familycareRouter.delete("/delete", familycareController.deleteFamilycare);
+
+//달력 수정 위한 라우트
+familycareRouter.put("/update", familycareController.updateFamilycare);
+
 module.exports = familycareRouter;
