@@ -34,7 +34,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
     <script>
 
-
+      var eventClickFlag = false; // 플래그 변수
       document.addEventListener("DOMContentLoaded", function () {
         var calendarEl = document.getElementById("calendar");
         var start, end, allDay;
@@ -75,144 +75,146 @@
           },
 
           //이벤트 클릭시 => 1.Read  2.수정 or 삭제
-          eventClick: function (arg) {
+          eventClick: function (arg) { //여기서
             // if (confirm("Are you sure you want to delete this event?")) {
             //   arg.event.remove();
             // }
-            u_start = arg.event.start;  //달력 시작 포인트
-            u_end = arg.event.end;      //달력 정착 포인트
-            u_allDay = arg.event.allDay;//달력 하루 or 부분
-            u_title = arg.event.title;
+            if (!eventClickFlag) { // 플래그 변수가 false일 때만 실행 현재 82,215 지워도 됨.
+              eventClickFlag = true;
+              u_start = arg.event.start;  //달력 시작 포인트
+              u_end = arg.event.end;      //달력 정착 포인트
+              u_allDay = arg.event.allDay;//달력 하루 or 부분
+              u_title = arg.event.title;
 
-            var eventClickDiv = document.getElementById("eventClick");
-            eventClickDiv.style.display = "block";
+              var eventClickDiv = document.getElementById("eventClick");
+              eventClickDiv.style.display = "block";
 
 
-            var startDate = new Date(arg.event.start);
-            var endDate = new Date(arg.event.end);
+              var startDate = new Date(arg.event.start);
+              var endDate = new Date(arg.event.end);
 
-            // Display clicked event details
-            document.getElementById("clickedDate").textContent = "Selected Date: " + startDate.toLocaleDateString();
-            document.getElementById("clickedTime").textContent = "Selected Time: " + startDate.toLocaleTimeString() + " - " + endDate.toLocaleTimeString();
-            document.getElementById("clickedAllday").textContent = "All Day: " + (arg.event.allDay ? "Yes" : "No");
+              // Display clicked event details
+              document.getElementById("clickedDate").textContent = "Selected Date: " + startDate.toLocaleDateString();
+              document.getElementById("clickedTime").textContent = "Selected Time: " + startDate.toLocaleTimeString() + " - " + endDate.toLocaleTimeString();
+              document.getElementById("clickedAllday").textContent = "All Day: " + (arg.event.allDay ? "Yes" : "No");
 
-            document.getElementById("updateDate").textContent = "Selected Date: " + startDate.toLocaleDateString();
-            document.getElementById("updateTime").textContent = "Selected Time: " + startDate.toLocaleTimeString() + " - " + endDate.toLocaleTimeString();
-            document.getElementById("updateAllday").textContent = "All Day: " + (arg.event.allDay ? "Yes" : "No");
+              document.getElementById("updateDate").textContent = "Selected Date: " + startDate.toLocaleDateString();
+              document.getElementById("updateTime").textContent = "Selected Time: " + startDate.toLocaleTimeString() + " - " + endDate.toLocaleTimeString();
+              document.getElementById("updateAllday").textContent = "All Day: " + (arg.event.allDay ? "Yes" : "No");
 
-            document.getElementById("clickedTitle").textContent = "Selected Title: " + arg.event.title;
-            document.getElementById("updateTitle").textContent = arg.event.title;
-            //주제, 시작점, 끝을 통한 eventContents 출력
-            <%for(var data of results) { %>
-              if("<%=data.start%>" === startDate.toISOString() && "<%=data.end%>"===endDate.toISOString() && "<%=data.title%>"===arg.event.title) {
-                var clickedType = document.getElementById("clickedType");
-                if ("<%= data.type %>" === "common") {
-                  clickedType.textContent = "<%= data.type %>";
-                } else {
-                  clickedType.textContent = "me";
-                }
-                //Contents 출력
-                document.getElementById("clickedContents").textContent = "<%=data.eventContents%>";
-                console.log("<%=data.eventContents%>");//테스트
-                const ID = <%=data.id%>;
-                u_ID = ID;
-                // console.log(id);
-                var removeEventButton = document.getElementById("removeEventButton");
-                removeEventButton.addEventListener("click",function(){
-                /**삭제 버튼 클릭시
-                  *  1. removeEventButton의 클릭을 감지한다.
-                  *  2. updateID 값을 받아 post 한다.
-                  *  3. arg.event.remove()를 하고 종료.
-                */
-                  fetch('/family/delete', {
-                    method: 'DELETE',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id: ID })
-                  })
-                  .then(response => {
-                    if (response.ok) {
-                      // 삭제 성공한 경우
-                      console.log('데이터가 성공적으로 삭제되었습니다.');
-                      // 추가로 필요한 처리 수행
-                    } else {
-                      // 삭제 실패한 경우
-                      console.log('데이터 삭제에 실패했습니다.');
-                    }
-                  })
-                  .catch(error => {
-                    console.error('데이터 삭제 중 오류가 발생했습니다.', error);
+              document.getElementById("clickedTitle").textContent = "Selected Title: " + arg.event.title;
+              document.getElementById("updateTitle").textContent = arg.event.title;
+              //주제, 시작점, 끝을 통한 eventContents 출력
+              <%for(var data of results) { %>
+                if("<%=data.start%>" === startDate.toISOString() && "<%=data.end%>"===endDate.toISOString() && "<%=data.title%>"===arg.event.title) {
+                  var clickedType = document.getElementById("clickedType");
+                  if ("<%= data.type %>" === "common") {
+                    clickedType.textContent = "<%= data.type %>";
+                  } else {
+                    clickedType.textContent = "me";
+                  }
+                  //Contents 출력
+                  document.getElementById("clickedContents").textContent = "<%=data.eventContents%>";
+                  console.log("<%=data.eventContents%>");//테스트
+                  const ID = <%=data.id%>;
+                  u_ID = ID;
+                  // console.log(id);
+                  var removeEventButton = document.getElementById("removeEventButton");
+                  removeEventButton.addEventListener("click",function(){
+                  /**삭제 버튼 클릭시
+                    *  1. removeEventButton의 클릭을 감지한다.
+                    *  2. updateID 값을 받아 post 한다.
+                    *  3. arg.event.remove()를 하고 종료.
+                  */
+                    fetch('/family/delete', {
+                      method: 'DELETE',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({ id: ID })
+                    })
+                    .then(response => {
+                      if (response.ok) {
+                        // 삭제 성공한 경우
+                        console.log('데이터가 성공적으로 삭제되었습니다.');
+                        // 추가로 필요한 처리 수행
+                      } else {
+                        // 삭제 실패한 경우
+                        console.log('데이터 삭제에 실패했습니다.');
+                      }
+                    })
+                    .catch(error => {
+                      console.error('데이터 삭제 중 오류가 발생했습니다.', error);
+                    });
+                    arg.event.remove();
                   });
-                  arg.event.remove();
-                });
-              }
-            <%}%>
-
-            var updateButton = document.getElementById("updateButton");
-            updateButton.addEventListener("click",function(){
-              arg.event.remove();
-              var updateType = document.querySelector('input[name="updateType"]:checked');
-              var updateTypeValue = updateType ? updateType.value : '';
-              // console.log(updateTypeValue);
-
-              if(updateTypeValue ==="common"){
-                calendar.addEvent({
-                  start: u_start.toISOString(),
-                  end: u_end.toISOString(),
-                  title: u_title,
-                  allDay: u_allDay,
-                  color :"orange",
-                });
-              }else{
-                calendar.addEvent({
-                  start: u_start.toISOString(),
-                  end: u_end.toISOString(),
-                  title: u_title,
-                  allDay: u_allDay,
-                });
-              }
-              console.log(u_ID);
-              console.log(updateTypeValue);
-
-              var updateContents = document.getElementById("updateContents");
-              var u_cont = updateContents.value.trim();
-              console.log(u_cont);
-
-
-              // 업데이트할 데이터 객체 생성
-              var updateData = {
-                id: u_ID,                // 업데이트할 데이터의 고유 식별자
-                type: updateTypeValue,   // 업데이트할 타입 (common 또는 me)
-                contents: u_cont         // 업데이트할 내용
-              };
-              console.log(updateData);
-
-              // 서버로 데이터 전송
-              fetch("/family/update", {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(updateData)
-              })
-              .then(response => {
-                if (response.ok) {
-                  console.log("Data has been successfully updated.");
-                  // 업데이트 성공 후 수행할 작업을 여기에 추가하세요.
-                } else {
-                  console.log("Failed to update data.");
                 }
-              })
-              .catch(error => {
-                console.log("An error occurred while updating data:", error);
+              <%}%>
+
+              var updateButton = document.getElementById("updateButton");
+              updateButton.addEventListener("click",function(){
+                arg.event.remove();
+                var updateType = document.querySelector('input[name="updateType"]:checked');
+                var updateTypeValue = updateType ? updateType.value : '';
+                // console.log(updateTypeValue);
+
+                if(updateTypeValue ==="common"){
+                  calendar.addEvent({
+                    start: u_start.toISOString(),
+                    end: u_end.toISOString(),
+                    title: u_title,
+                    allDay: u_allDay,
+                    color :"orange",
+                  });
+                }else{
+                  calendar.addEvent({
+                    start: u_start.toISOString(),
+                    end: u_end.toISOString(),
+                    title: u_title,
+                    allDay: u_allDay,
+                  });
+                }
+                console.log(u_ID);
+                console.log(updateTypeValue);
+
+                var updateContents = document.getElementById("updateContents");
+                var u_cont = updateContents.value.trim();
+                console.log(u_cont);
+
+
+                // 업데이트할 데이터 객체 생성
+                var updateData = {
+                  id: u_ID,                // 업데이트할 데이터의 고유 식별자
+                  type: updateTypeValue,   // 업데이트할 타입 (common 또는 me)
+                  contents: u_cont         // 업데이트할 내용
+                };
+                console.log(updateData);
+
+                // 서버로 데이터 전송
+                fetch("/family/update", {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(updateData)
+                })
+                .then(response => {
+                  if (response.ok) {
+                    console.log("Data has been successfully updated.");
+                    // 업데이트 성공 후 수행할 작업을 여기에 추가하세요.
+                  } else {
+                    console.log("Failed to update data.");
+                  }
+                })
+                .catch(error => {
+                  console.log("An error occurred while updating data:", error);
+                });
+
               });
+              eventClickFlag = false; // 이벤트 처리가 완료되면 플래그 변수를 다시 false로 설정
+            }
 
-            });
-
-
-
-          },
+          }, //여기까지
           editable: true,
           dayMaxEvents: true,
           events: [
