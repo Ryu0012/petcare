@@ -34,7 +34,11 @@
   </head>
   <body>
     <h1>pet edit</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+      <div>
+        <label for="avatar">Avator</label>
+        <input type="file" id="avatar" name="avatar" accept="image/*" />
+      </div>
       <div>
         <label for="input_name">Name</label>
         <input

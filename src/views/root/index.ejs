@@ -11,15 +11,24 @@
   <body>
     <header>
       <h1>Home</h1>
+      <% if(loggedIn === false) { %>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/pet">Pet</a></li>
-          <li><a href="/iot">Iot</a></li>
-          <li><a href="/edit">Edit</a></li>
+          <li><a href="/user/login">Login</a></li>
         </ul>
       </nav>
+      <% } else { %>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/user/logout">Log out</a></li>
+          <li><a href="/pet">Pet</a></li>
+          <li><a href="/iot">Iot</a></li>
+          <li><a href="/user/edit">Edit Profile</a></li>
+        </ul>
+      </nav>
+      <% }%>
     </header>
     <main></main>
     <script

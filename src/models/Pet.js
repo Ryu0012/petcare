@@ -1,7 +1,10 @@
+import session from "express-session";
 import mongoose from "mongoose";
 
 //default == value
 const petSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, require: true, ref: "User" },
+  avatarUrl: { type: String, required: true },
   name: { type: String, require: true, trim: true },
   age: { type: Number, trim: true },
   birth: { type: Date, trim: true },

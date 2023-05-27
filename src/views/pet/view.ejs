@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
+    <style>
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    </style>
     <title>Pet Care | <%= pageTitle %>></title>
   </head>
   <body>
@@ -13,15 +19,21 @@
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="#">Log out</a></li>
+          <li><a href="/user/logout">Log out</a></li>
           <li><a href="upload">upload Pet &rarr;</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <% if(pets != ""){ %> <% for(var i=0; i< pets.length; i++) { %>
+      <% if(pets != null){ %> <% for(var i=0; i < pets.length; i++) { %>
       <div class="container">
         <h3><%= pets[i].name %></h3>
+        <p>avatarUrl: <%= pets[i].avatarUrl %></p>
+        <% if (pets[i].avatarUrl != "") { %>
+        <img src="/<%= pets[i].avatarUrl%>" />
+        <% } else { %>
+        <img src="../image/basePetImg.jpg" />
+        <% } %>
         <ul>
           <li>age: <%= pets[i].age%></li>
           <li>birth: <%= pets[i].birth%></li>
@@ -39,7 +51,7 @@
         <a href="remove/<%= pets[i].id %>">pet delete &rarr;</a><br />
         <a href="edit/<%= pets[i].id %>">pet Edit &rarr;</a>
       </div>
-      <div class="under_line"></div>
+      <hr />
       <% }}else { %>
       <li>Sorry Nothing found.</li>
       <% } %>

@@ -9,33 +9,34 @@
     <title>Pet Care | <%= pageTitle %></title>
   </head>
   <body>
-    <h1>login</h1>
-    <span><%= errorMessage %></span>
-    <form method="post">
+    <h1><%= pageTitle %></h1>
+    <span><%=errorMessage %></span>
+    <form action="" method="post" enctype="multipart/form-data">
       <div>
-        <label for="input_email">email</label>
+        <label for="avatar">Avatar</label>
         <input
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/*"
+          required
+        />
+      </div>
+      <div>
+        <label for="input_name">name</label>
+        <input
+          name="newName"
           type="text"
-          id="input_email"
-          placeholder="userID or email"
-          name="email"
+          placeholder="name"
+          required
+          value="<%=loggedInUser.name %>"
         />
       </div>
-      <div>
-        <label for="input_password">password</label>
-        <input
-          type="password"
-          id="input_password"
-          placeholder="password"
-          name="password"
-        />
-      </div>
-      <input type="submit" value="Login" />
+      <input type="submit" value="Update Profile" />
       <hr />
       <span>Go </span>
       <a href="/">Home &rarr;</a><br />
-      <span>Don't have an account?</span>
-      <a href="/user/join">Create one now &rarr;</a>
+      <a href="changePassword"><span>Change Password &rarr;</span></a>
     </form>
     <footer>&copy; 2023 Petcare</footer>
   </body>
