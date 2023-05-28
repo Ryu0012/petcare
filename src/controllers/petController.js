@@ -15,20 +15,24 @@ export const getEdit = async (req, res) => {
 };
 
 export const postEdit = async (req, res) => {
-  console.log("어디가 오류인겨");
   const {
     params: { id },
     body: { name, age, birth, type, type_details, introduce },
     file,
   } = req;
-  const pet = await Pet.exists({ _id: id });
+  const pet = await Pet.findById({ _id: id });
   if (!pet) {
     return res.status(404).render("404", { pageTitle: "Pet not found." });
   }
-  const updatePet = await Pet.findByIdAndUpdate(
+  let avatarUrl = pet.avatarUrl;
+  if (file && file.path) {
+    avatarUrl = file.path;
+  }
+
+  await Pet.findByIdAndUpdate(
     id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl,
       name,
       age,
       birth,
@@ -40,6 +44,7 @@ export const postEdit = async (req, res) => {
     },
     { new: true }
   );
+
   return res.redirect(`/pet`);
 };
 
@@ -47,17 +52,22 @@ export const getUpload = (req, res) =>
   res.render("pet/upload", { pageTitle: "Upload Pet", errorMessage: "" });
 
 export const postUpload = async (req, res) => {
-  const file = req.file;
   const {
     body: { name, age, birth, type, type_details, introduce },
     session: {
       user: { _id },
     },
+    file,
   } = req;
+
+  let avatarUrl = "../image/basePetImg.jpg";
+  if (file && file.path) {
+    avatarUrl = file.path;
+  }
 
   try {
     await Pet.create({
-      avatarUrl: file.path,
+      avatarUrl,
       userId: _id,
       name,
       age,
@@ -68,9 +78,10 @@ export const postUpload = async (req, res) => {
       },
       introduce: Pet.formatIntroduce(introduce),
     });
-    console.log(introduce);
+    console.log(avatarUrl);
     return res.redirect("/pet");
   } catch (error) {
+    console.log(error._message);
     return res.render("pet/upload", {
       pageTitle: "Upload Pet",
       errorMessage: error._message,

@@ -11,6 +11,7 @@ export const getJoin = (req, res) => {
 };
 export const postJoin = async (req, res) => {
   const { name, email, password, password2 } = req.body;
+  const file = req.file;
   const emailExists = await User.exists({ email });
   if (password !== password2) {
     return res.status(400).render("user/join", {
@@ -28,8 +29,13 @@ export const postJoin = async (req, res) => {
       passwordErrorMessage: "",
     });
   }
+  let avatarUrl = "../image/baseUserImg.jpg";
+  if (file && file.path) {
+    avatarUrl = file.path;
+  }
   try {
     await User.create({
+      avatarUrl,
       name,
       email,
       password,
@@ -81,11 +87,12 @@ export const getEdit = (req, res) =>
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, name, avatarUrl },
+      user: { _id, name },
     },
     body: { newName },
     file,
   } = req;
+  const user = await User.findById({ _id });
   const ok = bcrypt.compare(newName, name);
   if (!ok) {
     return res.status(400).render("user/edit", {
@@ -93,18 +100,22 @@ export const postEdit = async (req, res) => {
       errorMessage: "동일한 이름입니다. 다른이름으로 설정해주세요.",
     });
   }
-
+  let avatarUrl = user.avatarUrl;
+  if (file && file.path) {
+    avatarUrl = file.path;
+  }
+  console.log(avatarUrl);
   const updateUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl,
       name,
     },
     { new: true }
   );
   req.session.user = updateUser;
 
-  return res.redirect("/user/edit");
+  return res.redirect("/user/profile");
 };
 
 export const getChangePassword = (req, res) => {
@@ -142,4 +153,15 @@ export const postChangePassword = async (req, res) => {
   user.password = newPassword;
   await user.save();
   return res.redirect("user/logout");
+};
+
+export const profile = async (req, res) => {
+  const { _id } = req.session.user;
+  const user = await User.findById({ _id });
+  if (!user) {
+    return res.status(400).render("404", { PageTitle: "User not found." });
+  }
+  let avatarUrl = user.avatarUrl;
+  console.log(avatarUrl);
+  return res.render("user/profile", { avatarUrl, errorMessage: "" });
 };

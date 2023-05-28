@@ -28,12 +28,7 @@
       <% if(pets != null){ %> <% for(var i=0; i < pets.length; i++) { %>
       <div class="container">
         <h3><%= pets[i].name %></h3>
-        <p>avatarUrl: <%= pets[i].avatarUrl %></p>
-        <% if (pets[i].avatarUrl != "") { %>
         <img src="/<%= pets[i].avatarUrl%>" />
-        <% } else { %>
-        <img src="../image/basePetImg.jpg" />
-        <% } %>
         <ul>
           <li>age: <%= pets[i].age%></li>
           <li>birth: <%= pets[i].birth%></li>

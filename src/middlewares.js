@@ -5,7 +5,8 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Pet care";
   res.locals.loggedInUser = req.session.user || {};
-  // console.log(req.session);
+  // console.log("session", req.session);
+  // console.log("locals", res.locals.loggedInUser);
   next();
 };
 

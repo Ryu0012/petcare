@@ -5,19 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <title><%= siteName%> | Home</title>
+    <title><%= siteName%> | Profile</title>
+    <style>
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    </style>
   </head>
   <body>
     <header>
-      <h1>Home</h1>
-      <% if(loggedIn === false) { %>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/user/login">Login</a></li>
-        </ul>
-      </nav>
-      <% } else { %>
+      <h1><%= loggedInUser.name %> 의 Profile</h1>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -27,12 +25,15 @@
           <li><a href="/user/profile">Profile</a></li>
         </ul>
       </nav>
-      <% }%>
     </header>
-    <main></main>
-    <script
-      src="https://kit.fontawesome.com/c47a47dbc9.js"
-      crossorigin="anonymous"
-    ></script>
+    <main>
+      <div>
+        <p><%=errorMessage %></p>
+        <img src="/<%= avatarUrl %> " alt="" />
+      </div>
+      <a href="/user/edit">
+        <span>edit profile &rarr;</span>
+      </a>
+    </main>
   </body>
 </html>
