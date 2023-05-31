@@ -1,0 +1,8 @@
+input[type="submit"] {
+  background: black;
+  border-color: black;
+}
+
+a {
+  color: rgb(149, 149, 134);
+}
