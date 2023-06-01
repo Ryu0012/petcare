@@ -5,12 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <style>
-      img {
-        height: 100px;
-        width: 100px;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/pet/view.css" />
     <title>Pet Care | <%= pageTitle %>></title>
   </head>
   <body>
@@ -24,29 +19,32 @@
         </ul>
       </nav>
     </header>
-    <main>
+    <main class="grid-container">
       <% if(pets != null){ %> <% for(var i=0; i < pets.length; i++) { %>
       <div class="container">
         <h3><%= pets[i].name %></h3>
-        <img src="/<%= pets[i].avatarUrl%>" />
+        <div class="img-container"><img src="/<%= pets[i].avatarUrl%>" /></div>
         <ul>
-          <li>age: <%= pets[i].age%></li>
-          <li>birth: <%= pets[i].birth%></li>
-          <li>type: <%= pets[i].type.value%></li>
-          <li>type_details: <%= pets[i].type.details%></li>
-          <li>introduce</li>
+          <li>나이: <%= pets[i].age%></li>
+          <% if(pets[i].age =="") {%>
+          <li>생일: <%= pets[i].birth%></li>
+          <%}%>
+          <li>종: <%= pets[i].type.value%></li>
+          <li>세부사항: <%= pets[i].type.details%></li>
+          <li>특이사항:</li>
           <ul>
             <% for(var j = 0; j< pets[i].introduce.length; j++) { %>
             <li><%= pets[i].introduce[j] %></li>
             <% } %>
           </ul>
         </ul>
+        <hr />
+        <div class="flex_container">
+          <a href="remove/<%= pets[i].id %>">pet delete &rarr;</a><br />
+          <a href="edit/<%= pets[i].id %>">pet Edit &rarr;</a>
+        </div>
       </div>
-      <div class="flex_container">
-        <a href="remove/<%= pets[i].id %>">pet delete &rarr;</a><br />
-        <a href="edit/<%= pets[i].id %>">pet Edit &rarr;</a>
-      </div>
-      <hr />
+
       <% }}else { %>
       <li>Sorry Nothing found.</li>
       <% } %>
