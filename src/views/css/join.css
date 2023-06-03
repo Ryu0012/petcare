@@ -21,10 +21,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .bg-container {
-  position: relative;
+  position: absolute;
+  z-index: 0;
 }
 
 .bg-circle {
@@ -33,26 +35,33 @@ body {
   border-radius: 50%;
   background-color: var(--purple_white);
   position: fixed;
-  left: -200px;
-  top: -100px;
+  right: -300px;
+  bottom: -300px;
+  z-index: 0;
 }
-
 .form-container {
   width: 1000px;
   height: 600px;
-  background-color: white;
+  background-color: rgba(255, 255, 255);
+  box-shadow: var(--box-shadow);
+  padding: 3rem;
+  position: absolute;
+  z-index: 1;
+}
+.grid-container {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  box-shadow: var(--box-shadow);
+  gap: 6rem;
 }
-.login {
-  padding: 4rem;
+.join {
+  padding: 2rem;
+  padding-bottom: 0;
 }
-
-.login h1 {
-  font-size: 2rem;
+.form-container h1 {
+  margin-left: 1rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  margin-bottom: 2rem;
 }
 
 input {
@@ -62,6 +71,9 @@ input {
   margin: 0.85rem 0;
   height: 3rem;
   transition: all ease-in-out 0.2s;
+}
+input[placeholder="password2"] {
+  margin: 0;
 }
 
 input::placeholder {
@@ -79,60 +91,19 @@ input[type="submit"] {
   color: white;
   height: 3.3rem;
   font-weight: 500;
+  margin-top: 4rem;
 }
 input[type="submit"]:hover {
   background-color: var(--purple-dark);
-}
-.or {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 3.5rem;
-}
-.or div {
-  width: 60px;
-  height: 0.3px;
-  background-color: var(--gray);
-}
-.or span {
-  margin: 0 1rem;
-  font-size: 14px;
-  font-weight: 200;
-  color: var(--gray);
-}
-
-.img-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-img {
-  height: 300px;
-  width: auto;
-  position: relative;
-  z-index: 10;
-}
-.img-circle {
-  position: absolute;
-  background-color: #2727252c;
-  bottom: 155px;
-  width: 250px;
-  height: 50px;
-  border-radius: 50%;
-  z-index: 2;
 }
 i {
   color: white;
   font-size: 1rem;
 }
 .footer-circle-container {
-  margin-top: 2rem;
   padding: 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 .footer-circle {
   width: 40px;
@@ -162,9 +133,9 @@ i {
   opacity: 0;
   transition: all ease-in-out 0.2s;
 }
-.footer-circle:hover {
-  background-color: var(--dark-gray);
-}
 .footer-circle:hover .footer-circle-hover {
   opacity: 1;
+}
+.footer-circle:hover {
+  background-color: var(--dark-gray);
 }

@@ -4,59 +4,87 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <link rel="stylesheet" href="../css/flex.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/join.css" />
     <title>Pet Care | <%= pageTitle %></title>
   </head>
   <body>
-    <h1><%= pageTitle %></h1>
-    <span><%=errorMessage %></span>
-    <form action="" method="post" enctype="multipart/form-data">
-      <div>
-        <label for="avatar">Avatar</label>
-        <input type="file" id="avatar" name="avatar" accept="image/*" />
+    <div class="container">
+      <div class="bg-container"><div class="bg-circle"></div></div>
+      <div class="form-container">
+        <h1>SIGN UP</h1>
+        <span><%=errorMessage %></span>
+        <form
+          class="join grid-container"
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="grid1">
+            <div>
+              <label for="avatar">Avatar</label>
+              <input type="file" id="avatar" name="avatar" accept="image/*" />
+            </div>
+            <div>
+              <label for="input_name">name</label>
+              <input name="name" type="text" placeholder="name" required />
+            </div>
+          </div>
+          <div class="grid2">
+            <div>
+              <label for="input_email">email</label>
+              <input name="email" type="email" placeholder="email" required />
+              <span><%=emailErrorMessage %></span>
+            </div>
+            <div>
+              <label for="input_password">password</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="password"
+                required
+              />
+              <input
+                name="password2"
+                type="password"
+                placeholder="password2"
+                required
+              />
+              <span><%=passwordErrorMessage %></span>
+            </div>
+            <input type="submit" value="Join" />
+          </div>
+        </form>
+
+        <footer>
+          <dir class="footer-circle-container">
+            <div class="footer-circle">
+              <div class="footer-circle-hover footer-circle-home">
+                <span>HOME</span>
+              </div>
+              <a href="/"><i class="fa-solid fa-house"></i></a>
+            </div>
+            <div class="footer-circle">
+              <div class="footer-circle-hover footer-circle-signIn">
+                <span>SIGN IN</span>
+              </div>
+              <a href="login"><i class="fa-solid fa-right-to-bracket"></i></a>
+            </div>
+          </dir>
+          <div>&copy; 2023 Petcare</div>
+        </footer>
       </div>
-      <div>
-        <label for="input_name">name</label>
-        <input name="name" type="text" placeholder="name" required />
-      </div>
-      <div>
-        <label for="input_email">email</label>
-        <input name="email" type="email" placeholder="email" required />
-        <span><%=emailErrorMessage %></span>
-      </div>
-      <div>
-        <label for="input_password">password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-          required
-        />
-        <input
-          name="password2"
-          type="password"
-          placeholder="password2"
-          required
-        />
-        <span><%=passwordErrorMessage %></span>
-      </div>
-      <div>
-        <label for="input_Number">phoneNumber</label>
-        <input
-          type="text"
-          placeholder="phoneNumber"
-          id="input_Number"
-          name="phoneNumber"
-        />
-      </div>
-      <input type="submit" value="Join" />
-      <hr />
-      <span>Go </span>
-      <a href="/">Home &rarr;</a><br />
-      <span>Already have an account? </span>
-      <a href="login">Log in now &rarr;</a>
-    </form>
-    <footer>&copy; 2023 Petcare</footer>
+      <!-- <div class="edit">
+        <hr />
+        <span>Go </span>
+        <a href="/">Home &rarr;</a><br />
+        <span>Already have an account? </span>
+        <a href="login">Log in now &rarr;</a>
+      </div> -->
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c47a47dbc9.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
