@@ -1,3 +1,13 @@
+:root {
+  --purple: #706fd3;
+  --purple_white: #716fd367;
+  --purple-dark: #474787;
+  --yellow: #ffda79;
+  --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --gray: #d1ccc0;
+  --ff: "Montserrat", sans-serif;
+  --dark-gray: #84817a;
+}
 * {
   box-sizing: border-box;
   font-family: var(--ff);
@@ -18,7 +28,36 @@ body {
   position: absolute;
   z-index: 0;
 }
+.bg-pet {
+  height: 300px;
+  width: auto;
+  position: fixed;
+  z-index: 5;
+  right: 340px;
+  bottom: 30px;
+}
+.bg-star {
+  top: 0;
+  position: fixed;
+  left: 220px;
+  top: 120px;
+  z-index: 5;
+  height: 70px;
+  transform: rotate(-45deg);
+  /* animation: moveStar 3.6s infinite linear; */
+}
 
+/* @keyframes moveStar {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+} */
 .bg-circle {
   height: 1000px;
   width: 1000px;
@@ -29,6 +68,20 @@ body {
   bottom: -300px;
   z-index: 0;
 }
+.img-circle {
+  position: absolute;
+  background-color: #2727252c;
+  bottom: 0;
+  width: 250px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 1;
+}
+img {
+  height: inherit;
+  position: absolute;
+  z-index: 5;
+}
 .form-container {
   width: 1000px;
   height: 600px;
@@ -36,7 +89,6 @@ body {
   box-shadow: var(--box-shadow);
   padding: 3rem;
   position: absolute;
-  z-index: 1;
 }
 .grid-container {
   width: 100%;

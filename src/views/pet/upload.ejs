@@ -4,57 +4,115 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <link rel="stylesheet" href="../css/flex.css" />
-    <title>Pet Care : Upload</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/pet/upload.css" />
+    <title>Pet Care | <%= pageTitle %></title>
   </head>
   <body>
-    <h1><%= pageTitle %></h1>
-    <span><%= errorMessage %></span>
-    <form action="" method="post" enctype="multipart/form-data">
-      <div>
-        <label for="avatar">Avatar</label>
-        <input type="file" id="avatar" name="avatar" accept="image/*" />
+    <div class="container">
+      <div class="bg-container">
+        <div class="bg-circle"></div>
       </div>
-      <div class="preference">
-        <label for="upload_name">Name</label>
-        <input
-          id="upload_name"
-          type="text"
-          name="name"
-          placeholder="name"
-          required
-        />
+      <div class="bg-pet">
+        <img src="../image/Brazuca - Dog.png" alt="" />
+        <div class="img-circle"></div>
       </div>
-      <div class="preference">
-        <label for="upload_age">Age</label>
-        <input id="upload_age" type="text" name="age" placeholder="age" />
+      <div class="bg-star">
+        <img src="../image/Hands - Star.png" alt="" />
       </div>
-      <div class="preference">
-        <label for="upload_date">Birth</label>
-        <input id="upload_date" type="text" name="birth" placeholder="birth" />
+      <div class="form-container">
+        <h1>UPLOAD PET</h1>
+        <span><%=errorMessage %></span>
+        <form
+          class="join grid-container"
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="grid1">
+            <div>
+              <label for="avatar">Avatar</label>
+              <input type="file" id="avatar" name="avatar" accept="image/*" />
+            </div>
+            <div>
+              <label for="upload_name">Name</label>
+              <input
+                id="upload_name"
+                type="text"
+                name="name"
+                placeholder="name"
+                required
+              />
+            </div>
+            <div>
+              <label for="upload_age">Age</label>
+              <input id="upload_age" type="text" name="age" placeholder="age" />
+            </div>
+            <div>
+              <label for="upload_date">Birth</label>
+              <input
+                id="upload_date"
+                type="text"
+                name="birth"
+                placeholder="birth"
+              />
+            </div>
+          </div>
+          <div class="grid2">
+            <div>
+              <label for="upload_type">Type</label>
+              <input
+                id="upload_type"
+                type="type"
+                name="type"
+                placeholder="반려동물 종"
+              />
+              <input
+                type="text"
+                name="type_details"
+                placeholder="type_details"
+              />
+            </div>
+            <div>
+              <label for="upload_introduce">introduce</label>
+              <input
+                name="introduce"
+                id="upload_introduce"
+                cols="100"
+                rows="0"
+                placeholder="반려동물을 소개해주세요!"
+              />
+            </div>
+            <input type="submit" value="Join" />
+          </div>
+        </form>
+
+        <footer>
+          <dir class="footer-circle-container">
+            <a href="/">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>HOME</span>
+                </div>
+                <i class="fa-solid fa-house"></i>
+              </div>
+            </a>
+            <a href="/pet">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>PET</span>
+                </div>
+                <i class="fa-solid fa-dog"></i>
+              </div>
+            </a>
+          </dir>
+          <div>&copy; 2023 Petcare</div>
+        </footer>
       </div>
-      <div class="preference">
-        <label for="upload_type">Type</label>
-        <input
-          id="upload_type"
-          type="type"
-          name="type"
-          placeholder="반려동물 종"
-        />
-        <input type="text" name="type_details" placeholder="type_details" />
-      </div>
-      <div class="preference">
-        <label for="upload_introduce">introduce</label>
-        <textarea
-          name="introduce"
-          id="upload_introduce"
-          cols="100"
-          rows="0"
-          placeholder="반려동물을 소개해주세요!"
-        ></textarea>
-      </div>
-      <input type="submit" value="Upload Pet" />
-    </form>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c47a47dbc9.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

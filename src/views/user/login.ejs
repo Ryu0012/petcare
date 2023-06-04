@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/root.css" />
     <link rel="stylesheet" href="../css/login.css" />
     <title>Pet Care | <%= pageTitle %></title>
   </head>
@@ -51,18 +52,30 @@
             <div></div>
           </div>
           <dir class="footer-circle-container">
-            <div class="footer-circle">
-              <div class="footer-circle-hover footer-circle-home">
-                <span>HOME</span>
+            <a href="/">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>HOME</span>
+                </div>
+                <i class="fa-solid fa-house"></i>
               </div>
-              <a href="/"><i class="fa-solid fa-house"></i></a>
-            </div>
-            <div class="footer-circle">
-              <div class="footer-circle-hover footer-circle-signIn">
-                <span>SIGN UP</span>
+            </a>
+            <a href="join">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>SIGN UP</span>
+                </div>
+                <i class="fa-solid fa-right-to-bracket"></i>
               </div>
-              <a href="join"><i class="fa-solid fa-right-to-bracket"></i></a>
-            </div>
+            </a>
+            <a href="#">
+              <div class="footer-circle">
+                <div class="footer-circle-hover last-child">
+                  <span>FIND PASSWORD</span>
+                </div>
+                <i class="fa-solid fa-lock"></i>
+              </div>
+            </a>
           </dir>
         </div>
       </div>

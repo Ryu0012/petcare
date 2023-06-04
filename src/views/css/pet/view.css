@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+}
+body {
+  height: 100vh;
+}
+
+header {
+  height: 5rem;
+  margin-top: 3.5rem;
+}
+nav,
+ul {
+  height: inherit;
+}
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.flex-container {
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  height: 100%;
+  margin: 1rem 5rem;
+  padding: 1.5rem 3rem;
+  align-items: center;
+  margin-top: 0;
+  padding-top: 0;
+}
+.container {
+  margin-right: 6.5rem;
+  box-shadow: var(--box-shadow);
+  height: 430px;
+  transition: all ease-in-out 0.5s;
+  position: relative;
+  width: 100%;
+  z-index: 6;
+  background-color: white;
+}
+.img-container {
+  width: auto;
+  height: 350px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 20px;
+}
+image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position: center;
+}
+.pet-name {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  height: 80px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.index-container {
+  display: none;
+  width: inherit;
+  transition: all ease-in-out 0.5s;
+}
+.container:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.container:hover .index-container {
+  display: flex;
+  align-items: flex-start;
+  background-color: black;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 440px;
+  width: inherit;
+  opacity: 0.85;
+  padding: 30px;
+}
+.index-container ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+li {
+  margin-bottom: 4px;
+}
+body {
+  position: relative;
+  height: 100vh;
+}
+.bg-container {
+  position: relative;
+  z-index: 0;
+}
+
+.bg-circle {
+  height: 1000px;
+  width: 1000px;
+  border-radius: 50%;
+  background-color: var(--purple_white);
+  position: fixed;
+  left: -200px;
+  top: -100px;
+}
+a {
+  color: var(--purple);
+  font-size: 1rem;
+  font-weight: 400;
+}

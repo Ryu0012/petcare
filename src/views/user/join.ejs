@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/root.css" />
     <link rel="stylesheet" href="../css/join.css" />
     <title>Pet Care | <%= pageTitle %></title>
   </head>
@@ -34,7 +35,9 @@
             <div>
               <label for="input_email">email</label>
               <input name="email" type="email" placeholder="email" required />
-              <span><%=emailErrorMessage %></span>
+              <div class="error-Message">
+                <span><%=emailErrorMessage %></span>
+              </div>
             </div>
             <div>
               <label for="input_password">password</label>
@@ -50,7 +53,9 @@
                 placeholder="password2"
                 required
               />
-              <span><%=passwordErrorMessage %></span>
+              <div class="error-Message">
+                <span><%=passwordErrorMessage %></span>
+              </div>
             </div>
             <input type="submit" value="Join" />
           </div>
@@ -58,29 +63,26 @@
 
         <footer>
           <dir class="footer-circle-container">
-            <div class="footer-circle">
-              <div class="footer-circle-hover footer-circle-home">
-                <span>HOME</span>
+            <a href="/">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>HOME</span>
+                </div>
+                <i class="fa-solid fa-house"></i>
               </div>
-              <a href="/"><i class="fa-solid fa-house"></i></a>
-            </div>
-            <div class="footer-circle">
-              <div class="footer-circle-hover footer-circle-signIn">
-                <span>SIGN IN</span>
+            </a>
+            <a href="login">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>SIGN IN</span>
+                </div>
+                <i class="fa-solid fa-right-to-bracket"></i>
               </div>
-              <a href="login"><i class="fa-solid fa-right-to-bracket"></i></a>
-            </div>
+            </a>
           </dir>
           <div>&copy; 2023 Petcare</div>
         </footer>
       </div>
-      <!-- <div class="edit">
-        <hr />
-        <span>Go </span>
-        <a href="/">Home &rarr;</a><br />
-        <span>Already have an account? </span>
-        <a href="login">Log in now &rarr;</a>
-      </div> -->
     </div>
     <script
       src="https://kit.fontawesome.com/c47a47dbc9.js"

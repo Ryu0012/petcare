@@ -60,7 +60,7 @@ export const postUpload = async (req, res) => {
     file,
   } = req;
 
-  let avatarUrl = "../image/basePetImg.jpg";
+  let avatarUrl = "../image/basePetImg.png";
   if (file && file.path) {
     avatarUrl = file.path;
   }
