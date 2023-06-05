@@ -4,34 +4,92 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <link rel="stylesheet" href="../css/flex.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/root.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/user/edit.css" />
     <title>Pet Care | <%= pageTitle %></title>
   </head>
   <body>
-    <h1><%= pageTitle %></h1>
-    <span><%=errorMessage %></span>
-    <form action="" method="post" enctype="multipart/form-data">
-      <div>
-        <label for="avatar">Avatar</label>
-        <input type="file" id="avatar" name="avatar" accept="image/*" />
+    <div class="container">
+      <div class="bg-container">
+        <div class="bg-circle"></div>
       </div>
-      <div>
-        <label for="input_name">name</label>
-        <input
-          name="newName"
-          type="text"
-          placeholder="name"
-          required
-          value="<%=loggedInUser.name %>"
-        />
+
+      <div class="form-container">
+        <div class="img-container">
+          <a href="/"
+            ><div>
+              <img src="../image/Humaaans - 1 Character.png" alt="" /></div
+          ></a>
+          <div class="img-circle"></div>
+        </div>
+        <div class="login">
+          <h1><%= pageTitle %></h1>
+          <span class="errorMessage"><%=errorMessage %></span>
+          <form method="post">
+            <div>
+              <label for="avatar">Avatar</label>
+              <input type="file" id="avatar" name="avatar" accept="image/*" />
+            </div>
+            <div>
+              <label for="input_name">name</label>
+              <input
+                name="newName"
+                type="text"
+                placeholder="name"
+                required
+                value="<%=loggedInUser.name %>"
+              />
+            </div>
+            <input type="submit" value="UPDATE" />
+          </form>
+          <footer>&copy; 2023 Petcare</footer>
+          <div class="or">
+            <div></div>
+            <span>OR</span>
+            <div></div>
+          </div>
+          <dir class="footer-circle-container">
+            <a href="/">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>HOME</span>
+                </div>
+                <i class="fa-solid fa-house"></i>
+              </div>
+            </a>
+            <a href="/user/profile">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>PROFILE</span>
+                </div>
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </a>
+            <a href="changePassword">
+              <div class="footer-circle">
+                <div class="footer-circle-hover change-password">
+                  <span>CHANGE PASSWORD</span>
+                </div>
+                <i class="fa-solid fa-key"></i>
+              </div>
+            </a>
+            <a href="/user/remove">
+              <div class="footer-circle">
+                <div class="footer-circle-hover unregister">
+                  <span>UNREGISTER</span>
+                </div>
+                <i class="fa-solid fa-x"></i>
+              </div>
+            </a>
+          </dir>
+        </div>
       </div>
-      <input type="submit" value="Update Profile" />
-      <hr />
-      <span>Go </span>
-      <a href="/">Home &rarr;</a><br />
-      <a href="changePassword"><span>Change Password &rarr;</span></a>
-    </form>
-    <footer>&copy; 2023 Petcare</footer>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c47a47dbc9.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

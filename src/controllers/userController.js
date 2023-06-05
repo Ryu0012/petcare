@@ -165,3 +165,10 @@ export const profile = async (req, res) => {
   console.log(avatarUrl);
   return res.render("user/profile", { avatarUrl, errorMessage: "" });
 };
+
+export const deleteUser = async (req, res) => {
+  const { _id } = req.session.user;
+  await User.findByIdAndDelete({ _id });
+
+  return res.redirect("/user/logout");
+};

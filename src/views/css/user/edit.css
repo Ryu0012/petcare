@@ -1,0 +1,15 @@
+.change-password {
+  width: 140px;
+}
+.unregister {
+  width: 100px;
+}
+.bg-circle {
+  background-color: #b8e994;
+}
+input[type="submit"] {
+  background-color: #009432;
+}
+input[type="submit"]:hover {
+  background-color: #006266;
+}

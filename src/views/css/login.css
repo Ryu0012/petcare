@@ -11,10 +11,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .bg-container {
-  position: relative;
+  position: absolute;
+  z-index: 0;
 }
 
 .bg-circle {
@@ -34,6 +36,9 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: var(--box-shadow);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 3;
 }
 .login {
   padding: 4rem;
@@ -52,6 +57,7 @@ input {
   margin: 0.85rem 0;
   height: 3rem;
   transition: all ease-in-out 0.2s;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 input::placeholder {

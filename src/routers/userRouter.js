@@ -10,6 +10,7 @@ import {
   getChangePassword,
   postChangePassword,
   profile,
+  deleteUser,
 } from "../controllers/userController";
 import {
   protectorMiddleware,
@@ -36,5 +37,6 @@ userRouter
   .all(protectorMiddleware)
   .get(getChangePassword)
   .post(postChangePassword);
+userRouter.route("/remove").get(protectorMiddleware, deleteUser);
 
 export default userRouter;
