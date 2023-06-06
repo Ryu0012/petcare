@@ -30,7 +30,16 @@
       </nav>
       <% }%>
     </header>
-    <main></main>
+    <main>
+      <form action="/family/new" method="POST">
+        <button type="submit">방 만들기</button>
+      </form>
+      <form action="/family/enter" method="POST">
+        <input type="text" name="familyPath" placeholder="URL" required />
+        <button type="submit">방 참가하기</button>
+      </form>
+    </main>
+
     <script
       src="https://kit.fontawesome.com/c47a47dbc9.js"
       crossorigin="anonymous"

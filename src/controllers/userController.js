@@ -39,9 +39,11 @@ export const postJoin = async (req, res) => {
       name,
       email,
       password,
+      familyPath: "",
     });
     return res.redirect("/user/login");
   } catch (error) {
+    console.log(error);
     return res.status(400).render("user/join", {
       pageTitle: "Join",
       errorMessage: error._message,
