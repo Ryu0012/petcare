@@ -5,6 +5,7 @@ export const view = async (req, res) => {
   const pets = await Pet.find({ userId: _id });
   return res.render("pet/view", { pageTitle: "View", pets });
 };
+
 export const getEdit = async (req, res) => {
   const { id } = req.params;
   const pet = await Pet.findById(id);

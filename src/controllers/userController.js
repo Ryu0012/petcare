@@ -29,7 +29,7 @@ export const postJoin = async (req, res) => {
       passwordErrorMessage: "",
     });
   }
-  let avatarUrl = "../image/baseUserImg.jpg";
+  let avatarUrl = "../image/baseUserImg.png";
   if (file && file.path) {
     avatarUrl = file.path;
   }
