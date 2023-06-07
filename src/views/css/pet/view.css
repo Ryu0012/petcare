@@ -64,7 +64,7 @@ a {
   display: flex;
   flex-direction: row;
   height: 2rem;
-  background-color: var(--purple);
+  background-color: #40407a;
   border-radius: 1rem;
   align-items: center;
 }

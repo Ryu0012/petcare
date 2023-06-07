@@ -38,12 +38,14 @@
         z-index: 0;
       }
       .bg-pet {
-        height: 300px;
-        width: auto;
         position: fixed;
         z-index: 5;
         right: 340px;
         bottom: 30px;
+      }
+      img {
+        width: 400px;
+        height: 400px;
       }
       .bg-star {
         top: 0;
@@ -64,6 +66,43 @@
         right: -300px;
         bottom: -300px;
         z-index: 0;
+        animation: moveCircle 30s infinite linear;
+      }
+      .bg-circle2 {
+        height: 500px;
+        width: 500px;
+        border-radius: 50%;
+        background-color: var(--purple);
+        position: fixed;
+        left: -200px;
+        top: -100px;
+        animation: moveCircle2 200s infinite linear;
+        z-index: 0;
+      }
+      @keyframes moveCircle {
+        0% {
+          transform: translate(0, -100px);
+        }
+        40% {
+          transform: translate(100px, -200px);
+        }
+        100% {
+          transform: translate(0, -100px);
+        }
+      }
+      @keyframes moveCircle2 {
+        0% {
+          transform: translate(0, -100px);
+        }
+        20% {
+          transform: translate(200px, 400px);
+        }
+        60% {
+          transform: translate(800px, -200px);
+        }
+        100% {
+          transform: translate(0, -100px);
+        }
       }
       .img-circle {
         position: absolute;
@@ -186,6 +225,7 @@
     <div class="container">
       <div class="bg-container">
         <div class="bg-circle"></div>
+        <div class="bg-circle2"></div>
       </div>
       <div class="form-container">
         <h1>EDIT PET</h1>
