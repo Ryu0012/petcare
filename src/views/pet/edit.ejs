@@ -4,105 +4,333 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <!-- <link rel="stylesheet" href="../css/flex.css" /> -->
+    <!-- <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/pet/upload.css" /> -->
     <style>
+      :root {
+        --purple: #706fd3;
+        --purple_white: #716fd367;
+        --purple-dark: #474787;
+        --yellow: #ffda79;
+        --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        --gray: #d1ccc0;
+        --ff: "Montserrat", sans-serif;
+        --dark-gray: #84817a;
+      }
       * {
         box-sizing: border-box;
+        font-family: var(--ff);
       }
-
       body {
+        overflow: hidden;
+        height: 100vh;
+      }
+      .container {
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
-        height: auto;
+        position: relative;
       }
 
-      form {
+      .bg-container {
+        position: absolute;
+        z-index: 0;
+      }
+      .bg-pet {
+        position: fixed;
+        z-index: 5;
+        right: 340px;
+        bottom: 30px;
+      }
+      img {
         width: 400px;
+        height: 400px;
+      }
+      .bg-star {
+        top: 0;
+        position: fixed;
+        left: 220px;
+        top: 120px;
+        z-index: 5;
+        height: 70px;
+        transform: rotate(-45deg);
+      }
+
+      .bg-circle {
+        height: 1000px;
+        width: 1000px;
+        border-radius: 50%;
+        background-color: var(--purple_white);
+        position: fixed;
+        right: -300px;
+        bottom: -300px;
+        z-index: 0;
+        animation: moveCircle 30s infinite linear;
+      }
+      .bg-circle2 {
+        height: 500px;
+        width: 500px;
+        border-radius: 50%;
+        background-color: var(--purple);
+        position: fixed;
+        left: -200px;
+        top: -100px;
+        animation: moveCircle2 200s infinite linear;
+        z-index: 0;
+      }
+      @keyframes moveCircle {
+        0% {
+          transform: translate(0, -100px);
+        }
+        40% {
+          transform: translate(100px, -200px);
+        }
+        100% {
+          transform: translate(0, -100px);
+        }
+      }
+      @keyframes moveCircle2 {
+        0% {
+          transform: translate(0, -100px);
+        }
+        20% {
+          transform: translate(200px, 400px);
+        }
+        60% {
+          transform: translate(800px, -200px);
+        }
+        100% {
+          transform: translate(0, -100px);
+        }
+      }
+      .img-circle {
+        position: absolute;
+        background-color: #2727252c;
+        bottom: 0;
+        width: 250px;
+        height: 50px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      img {
+        height: inherit;
+        position: absolute;
+        z-index: 5;
+      }
+      .form-container {
+        width: 1000px;
+        height: 700px;
+        background-color: rgba(255, 255, 255);
+        box-shadow: var(--box-shadow);
+        padding: 3rem;
+        position: absolute;
+      }
+      .grid-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+      }
+      .join {
+        padding: 2rem;
+        padding-bottom: 0;
+      }
+      .form-container h1 {
+        margin-left: 1rem;
+        font-size: 1.7rem;
+        font-weight: 700;
       }
 
       input {
+        border: none;
+        border-bottom: 1px solid var(--gray);
         width: 100%;
+        margin: 0.85rem 0;
+        height: 3rem;
+        transition: all ease-in-out 0.2s;
       }
-      input[type="text"] {
-        width: 100%;
+      input[placeholder="password2"] {
+        margin: 0;
+      }
+
+      input::placeholder {
+        color: var(--gray);
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+      input:focus {
+        border-bottom-color: var(--dark-gray);
+      }
+
+      input[type="submit"] {
+        cursor: pointer;
+        background-color: var(--purple);
+        color: white;
+        height: 3.3rem;
+        font-weight: 500;
+        margin-top: 4rem;
+      }
+      input[type="submit"]:hover {
+        background-color: var(--purple-dark);
+      }
+      i {
+        color: white;
+        font-size: 1rem;
+      }
+      .footer-circle-container {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+      }
+      .footer-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.5rem;
+        position: relative;
+        transition: all ease-in-out 0.2s;
+      }
+      .footer-circle-hover {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.712);
+        color: white;
+        border-radius: 1rem;
+        padding: 0.7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        font-size: 0.7rem;
+        font-weight: 300;
+        top: -40px;
+        opacity: 0;
+        transition: all ease-in-out 0.2s;
+      }
+      .footer-circle:hover .footer-circle-hover {
+        opacity: 1;
+      }
+      .footer-circle:hover {
+        background-color: var(--dark-gray);
       }
     </style>
-    <title>Pet Care : Pet Edit</title>
+
+    <title>Pet Care | Edit</title>
   </head>
   <body>
-    <h1>pet edit</h1>
-    <form method="post" enctype="multipart/form-data">
-      <div>
-        <label for="avatar">Avator</label>
-        <input type="file" id="avatar" name="avatar" accept="image/*" />
+    <div class="container">
+      <div class="bg-container">
+        <div class="bg-circle"></div>
+        <div class="bg-circle2"></div>
       </div>
-      <div>
-        <label for="input_name">Name</label>
-        <input
-          name="name"
-          type="text"
-          id="input_name"
-          placeholder="이름"
-          value="<%= pet.name%>"
-          required
-        />
+      <div class="form-container">
+        <h1>EDIT PET</h1>
+        <form
+          class="join grid-container"
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="grid1">
+            <div>
+              <label for="avatar">Avator</label>
+              <input type="file" id="avatar" name="avatar" accept="image/*" />
+            </div>
+
+            <div>
+              <label for="input_name">Name</label>
+              <input
+                name="name"
+                type="text"
+                id="input_name"
+                placeholder="이름"
+                value="<%= pet.name%>"
+                required
+              />
+            </div>
+            <div>
+              <label for="input_age">Age</label>
+              <input
+                type="text"
+                name="age"
+                id="input_age"
+                value="<%= pet.age%>"
+                placeholder="나이"
+              />
+            </div>
+            <div>
+              <label for="input_birth">Birth</label>
+              <input
+                type="text"
+                name="birth"
+                id="input_birth"
+                value="<%= pet.birth%>"
+                placeholder="생일"
+              />
+            </div>
+          </div>
+          <div class="grid2">
+            <div>
+              <label for="input_type">Type</label>
+              <input
+                type="text"
+                name="type"
+                id="input_type"
+                value="<%= pet.type.value%>"
+                placeholder="종"
+              />
+              <input
+                type="text"
+                name="type_details"
+                id="input_type"
+                value="<%= pet.type.details%>"
+                placeholder="품종"
+              />
+            </div>
+            <div>
+              <label for="input_introduce"> introduce (,) </label>
+              <input
+                type="text"
+                value="<%= pet.introduce %>"
+                placeholder="반려동물을 소개해주세요!"
+                name="introduce"
+                id="input_introduce"
+              />
+            </div>
+            <input type="submit" value="SAVE" />
+          </div>
+        </form>
+
+        <footer>
+          <dir class="footer-circle-container">
+            <a href="/">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>HOME</span>
+                </div>
+                <i class="fa-solid fa-house"></i>
+              </div>
+            </a>
+            <a href="/pet">
+              <div class="footer-circle">
+                <div class="footer-circle-hover">
+                  <span>PET</span>
+                </div>
+                <i class="fa-solid fa-dog"></i>
+              </div>
+            </a>
+          </dir>
+          <div>&copy; 2023 Petcare</div>
+        </footer>
       </div>
-      <div>
-        <label for="input_age">Age</label>
-        <input
-          type="text"
-          name="age"
-          id="input_age"
-          value="<%= pet.age%>"
-          placeholder="나이"
-        />
-      </div>
-      <div>
-        <label for="input_birth">Birth</label>
-        <input
-          type="text"
-          name="birth"
-          id="input_birth"
-          value="<%= pet.birth%>"
-          placeholder="생일"
-        />
-      </div>
-      <div>
-        <label for="input_type">Type</label>
-        <input
-          type="text"
-          name="type"
-          id="input_type"
-          value="<%= pet.type.value%>"
-          placeholder="종"
-          required
-        />
-        <input
-          type="text"
-          name="type_details"
-          id="input_type"
-          value="<%= pet.type.details%>"
-          placeholder="품종"
-        />
-      </div>
-      <div>
-        <label for="input_introduce"> introduce (,) </label>
-        <input
-          type="text"
-          value="<%= pet.introduce %>"
-          placeholder="반려동물을 소개해주세요!"
-          name="introduce"
-          id="input_introduce"
-        />
-      </div>
-      <input type="submit" value="save" />
-      <hr />
-      <span>Go </span>
-      <a href="/pet">Pet &rarr;</a><br />
-    </form>
-    <footer>&copy; 2023 Petcare</footer>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c47a47dbc9.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

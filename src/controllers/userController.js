@@ -29,7 +29,7 @@ export const postJoin = async (req, res) => {
       passwordErrorMessage: "",
     });
   }
-  let avatarUrl = "../image/baseUserImg.jpg";
+  let avatarUrl = "../image/baseUserImg.png";
   if (file && file.path) {
     avatarUrl = file.path;
   }
@@ -39,9 +39,11 @@ export const postJoin = async (req, res) => {
       name,
       email,
       password,
+      familyPath: "",
     });
     return res.redirect("/user/login");
   } catch (error) {
+    console.log(error);
     return res.status(400).render("user/join", {
       pageTitle: "Join",
       errorMessage: error._message,
@@ -87,19 +89,13 @@ export const getEdit = (req, res) =>
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, name },
+      user: { _id },
     },
     body: { newName },
     file,
   } = req;
   const user = await User.findById({ _id });
-  const ok = bcrypt.compare(newName, name);
-  if (!ok) {
-    return res.status(400).render("user/edit", {
-      pageTitle: "Edit Profile",
-      errorMessage: "동일한 이름입니다. 다른이름으로 설정해주세요.",
-    });
-  }
+
   let avatarUrl = user.avatarUrl;
   if (file && file.path) {
     avatarUrl = file.path;
@@ -109,7 +105,7 @@ export const postEdit = async (req, res) => {
     _id,
     {
       avatarUrl,
-      name,
+      name: newName,
     },
     { new: true }
   );

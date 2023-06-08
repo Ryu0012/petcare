@@ -27,7 +27,7 @@
         <div class="login">
           <h1><%= pageTitle %></h1>
           <span class="errorMessage"><%=errorMessage %></span>
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
             <div>
               <label for="avatar">Avatar</label>
               <input type="file" id="avatar" name="avatar" accept="image/*" />

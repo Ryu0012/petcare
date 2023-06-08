@@ -163,3 +163,42 @@ const updateFamilycare = (req, res) => {
   // });
 };
 module.exports.updateFamilycare = updateFamilycare;
+
+import User from "../models/User";
+
+export const getNewFamily = (req, res) => {
+  return res.render("family/newFamily");
+};
+
+export const postNew = async (req, res) => {
+  const {
+    session: { user: _id },
+  } = req;
+  await User.findByIdAndUpdate(
+    _id,
+    {
+      familyPath: User.generateRandomString(),
+    },
+    { new: true }
+  );
+
+  const user = await User.findOne({ _id });
+  req.session.familyIn = true;
+  req.session.user = user;
+  return res.redirect("/family");
+};
+
+export const postEnter = async (req, res) => {
+  const { familyPath } = req.body;
+  const {
+    session: { user: _id },
+  } = req;
+  await User.findByIdAndUpdate(
+    _id,
+    {
+      familyPath: User.generateRandomString(),
+    },
+    { new: true }
+  );
+  return res.redirect("/family");
+};

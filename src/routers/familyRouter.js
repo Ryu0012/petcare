@@ -1,3 +1,10 @@
+import {
+  getNewFamily,
+  postNew,
+  postEnter,
+} from "../controllers/familycareController";
+import { familyInCheckMiddleware, protectorMiddleware } from "../middlewares";
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const familycareController = require("../controllers/familycareController");
@@ -23,3 +30,15 @@ familycareRouter.delete("/delete", familycareController.deleteFamilycare);
 familycareRouter.put("/update", familycareController.updateFamilycare);
 
 module.exports = familycareRouter;
+
+familycareRouter
+  .route("/newFamily")
+  .get(protectorMiddleware, familyInCheckMiddleware, getNewFamily);
+familycareRouter
+  .route("/new")
+  .post(protectorMiddleware, familyInCheckMiddleware, postNew);
+familycareRouter
+  .route("/enter")
+  .post(protectorMiddleware, familyInCheckMiddleware, postEnter);
+
+export default familycareRouter;

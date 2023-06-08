@@ -10,60 +10,82 @@
     <title>Pet Care | <%= pageTitle %>></title>
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/user/logout">LOG OUT</a></li>
-          <li><a href="/">PET CARE</a></li>
-          <li>
-            <a href="upload"
-              >UPLOAD PET <i class="fa-sharp fa-light fa-paw-simple"></i
-            ></a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div class="bg-container">
-      <div class="bg-circle"></div>
-    </div>
-    <main class="flex-container">
-      <% if(pets != null){ %> <% for(var i=0; i < pets.length; i++) { %>
-      <div class="container">
-        <div class="img-container">
-          <img src="/<%= pets[i].avatarUrl%>" />
-        </div>
-        <div class="pet-name">
-          <h3><%= pets[i].name %></h3>
-        </div>
-        <div class="index-container">
-          <ul>
-            <li>나이: <%= pets[i].age%></li>
-            <% if(pets[i].age =="") {%>
-            <li>생일: <%= pets[i].birth%></li>
-            <%}%>
-            <li>종: <%= pets[i].type.value%></li>
-            <li>세부사항: <%= pets[i].type.details%></li>
-            <li>특이사항:</li>
-            <ul>
-              <% for(var j = 0; j< pets[i].introduce.length; j++) { %>
-              <li><%= pets[i].introduce[j] %></li>
-              <% } %>
-            </ul>
-            <hr />
-            <div class="flex_container">
-              <a href="remove/<%= pets[i].id %>">pet delete &rarr;</a><br />
-              <a href="edit/<%= pets[i].id %>">pet Edit &rarr;</a>
-            </div>
+    <div class="container">
+      <header class="header-container">
+        <nav>
+          <ul class="header-ul">
+            <li><a href="/user/logout">LOG OUT</a></li>
+            <li><a href="/">PET CARE</a></li>
+            <li>
+              <a href="upload"
+                >UPLOAD PET <i class="fa-sharp fa-light fa-paw-simple"></i
+              ></a>
+            </li>
           </ul>
+        </nav>
+        <div class="home-flex-container">
+          <div class="home-container">
+            <li><a href="/family/newFamily">Family</a></li>
+            <li><a href="/iot">Iot</a></li>
+            <li><a href="/user/profile">Profile</a></li>
+          </div>
         </div>
+      </header>
+      <div class="bg-container">
+        <div class="bg-circle"></div>
+        <div class="bg-circle2"></div>
       </div>
+      <main class="grid-container">
+        <% if(pets != null){ %> <% for(var i=0; i < pets.length; i++) { %>
+        <div class="list-container">
+          <div class="img-container">
+            <img class="image-thumbnail" src="/<%= pets[i].avatarUrl%>" />
+          </div>
+          <div class="pet-name">
+            <h3><%= pets[i].name %></h3>
+          </div>
+          <div class="index-container">
+            <ul>
+              <li>나이: <%= pets[i].age%>살</li>
+              <li>생일: <%= pets[i].birth%></li>
+              <li>종: <%= pets[i].type.value%></li>
+              <li>세부사항: <%= pets[i].type.details%></li>
+              <li>특이사항:</li>
+              <div class="index-container--last">
+                <% for(var j = 0; j< pets[i].introduce.length; j++) { %>
+                <li style="margin-bottom: 0; list-style: square">
+                  <%= pets[i].introduce[j] %>
+                </li>
+                <% } %>
+              </div>
+            </ul>
+            <dir class="footer-circle-container">
+              <a href="edit/<%= pets[i].id %>"
+                ><div class="footer-circle">
+                  <div class="footer-circle-hover unregister">
+                    <span>EDIT</span>
+                  </div>
+                  <i class="fa-solid fa-pen-to-square"></i></div
+              ></a>
+              <a href="remove/<%= pets[i].id %>"
+                ><div class="footer-circle">
+                  <div class="footer-circle-hover unregister">
+                    <span>REMOVE</span>
+                  </div>
+                  <i class="fa-solid fa-x"></i></div
+              ></a>
+            </dir>
+          </div>
+        </div>
 
-      <% }}else { %>
-      <li>Sorry Nothing found.</li>
-      <% } %>
-    </main>
-    <hr />
-    <footer>&copy; 2023 Petcare</footer>
-    <script src="../css/pet/js/view.js"></script>
+        <% }}else { %>
+        <li>Sorry Nothing found.</li>
+        <% } %>
+      </main>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c47a47dbc9.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

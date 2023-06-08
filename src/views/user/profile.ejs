@@ -4,36 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/root.css" />
+    <link rel="stylesheet" href="../css/pet/view.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
     <title><%= siteName%> | Profile</title>
-    <style>
-      img {
-        height: 100px;
-        width: 100px;
-      }
-    </style>
   </head>
   <body>
-    <header>
-      <h1><%= loggedInUser.name %> 의 Profile</h1>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/user/logout">Log out</a></li>
-          <li><a href="/pet">Pet</a></li>
-          <li><a href="/iot">Iot</a></li>
-          <li><a href="/user/profile">Profile</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div>
-        <p><%=errorMessage %></p>
-        <img src="/<%= avatarUrl %> " alt="" />
+    <div class="container">
+      <header class="header-container">
+        <nav>
+          <ul class="header-ul">
+            <li><a href="/user/logout">LOG OUT</a></li>
+            <li><a href="/">PET CARE</a></li>
+            <li><a href="/user/profile">PROFILE</a></li>
+          </ul>
+        </nav>
+        <div class="home-flex-container">
+          <div class="home-container">
+            <li><a href="/pet">Pet</a></li>
+            <li><a href="/family/newFamily">Family</a></li>
+            <li><a href="/iot">Iot</a></li>
+          </div>
+        </div>
+      </header>
+      <div class="bg-container">
+        <div class="bg-circle"></div>
+        <div class="bg-circle2"></div>
       </div>
-      <a href="/user/edit">
-        <span>edit profile &rarr;</span>
-      </a>
-    </main>
+      <main class="flex-container">
+        <div class="img-container">
+          <p><%=errorMessage %></p>
+          <img class="image-thumbnail" src="/<%= avatarUrl %> " alt="" />
+        </div>
+        <h1><%= loggedInUser.name %> Profile</h1>
+        <a href="/user/edit">
+          <span>· edit profile ·</span>
+        </a>
+      </main>
+      <footer>&copy; 2023 Petcare</footer>
+    </div>
   </body>
 </html>
