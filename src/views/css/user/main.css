@@ -75,18 +75,18 @@ body {
 
 .form-container {
     width: 1000px;
-    height: 550px;
+    height: 400px;
     display:flex;
     box-shadow: var(--box-shadow);
     position:fixed;
-    top:15%;
+    top:30%;
     background-color: rgba(0, 0, 0, 0);
     z-index: 3;
     justify-content: center;
 }
 
 .img-container{
-    position: relative;
+    position: flex;
     z-index: 1;
 }
 
@@ -94,29 +94,30 @@ body {
     position:absolute;
     top:50%;
     left:50%;
-    transform: translate(-65%,1100%);
+    transform: translate(-50%,-50%);
 }
 
 .img-inside-container{
     position: absolute;
     top:50%;
     left:50%;
-    transform: translate(-53%,-50%);
+    transform: translate(-50%,-50%);
     z-index: -1;
 }
 
 .loggedout-txtbox-in-img {
     font-size: large;
-    position: flex;
-    top:80%;
-    left:-10%;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, 800%);
 }
 
-.loggedout-img-inside-container{
+.loggedout-img-inside-container {
     position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-60%,-60%);
+    top:100%;
+    left: 50%;
+    transform: translate(-50%, -70%);
     z-index: -1;
 }
 

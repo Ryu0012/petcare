@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/root.css" />
-    <link rel="stylesheet" href="../css/user/header.css" />
+    <link rel="stylesheet" href="../css/pet/view.css" />
     <link rel="stylesheet" href="../css/user/main.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -15,31 +15,41 @@
     <title><%= siteName%> | Home</title>
 
   </head>
-    <header class="header">
       <% if(loggedIn === false) { %>
-          <div class="header_logo">
-            <a href="/"><h1>Petcare</h1></a>
-          </div>
-          <div class="header_gnb">
-            <ul>
-              <li><a href="/user/Login">Login</a></li>
+        <header class="header-container">
+          <nav>
+            <ul class="not-join-header-ul">
+              <li></li>
+              <li><a href="/">PET CARE</a></li>
+              <li></li>
             </ul>
+          </nav>
+          <div class="home-flex-container">
+            <div class="home-container">
+              <li><a href="/user/login">LOG IN</a></li>
+            </div>
           </div>
+        </header>
       <% } else { %>
-        <div class="header_logo">
-          <a href="/"><h1>Petcare</h1></a>
-        </div>
-        <div class="header_gnb">
-          <ul>
-            <li><a href="/pet">Pet</a></li>
-            <li><a href="/iot">IoT</a></li>
-            <li><a href="/user/Profile">Profile</a></li>
-            <li><a href="/family/newFamily">Family</a></li>
-            <li><a href="/user/Logout">Log out</a></li>
-          </ul>
-        </div>
+        <header class="header-container">
+          <nav>
+            <ul class="header-ul">
+              <li><a href="/user/logout">LOG OUT</a></li>
+              <li><a href="/">PET CARE</a></li>
+              <li></li>
+            </ul>
+          </nav>
+          <div class="home-flex-container">
+            <div class="home-container">
+              <li><a href="/family/newFamily">Family</a></li>
+              <li><a href="/iot">Iot</a></li>
+              <li><a href="/user/profile">Profile</a></li>
+              <li><a href="/pet">Pet</a></li>
+            </div>
+          </div>
+        </header>
       <% }%>
-    </header>
+
     <body>
       <% if(loggedIn === false) { %>
         <div class="container">
@@ -47,14 +57,12 @@
             <div class="bg-circle"></div>
             <div class="bg-circle2"></div>
           </div>
-          <div class="form-container">
             <div class="img-container">
-                <p class="loggedout-txtbox-in-img">로그인 이후 사용 가능합니다</p>
-                <div class="loggedout-img-inside-container">
-                  <img src="../image/unloggedinX.png">
-                </div>
+              <p class="loggedout-txtbox-in-img">로그인 이후 사용 가능합니다</p>
+              <div class="loggedout-img-inside-container">
+                <img src="../image/maybelogo.png">
+              </div>
             </div>
-          </div>
         </div>
       <% } else { %>
         <div class="container">

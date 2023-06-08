@@ -4,23 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css" />
-    <title><%= siteName%> | Home</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/root.css" />
+    <link rel="stylesheet" href="../css/pet/view.css" />
+    <title><%= siteName%> | IoT</title>
   </head>
   <body>
-    <header>
-      <h1>Iot</h1>
+    <header class="header-container">
       <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/user/logout">Log out</a></li>
-          <li><a href="/pet">Pet</a></li>
-          <li><a href="/iot">Iot</a></li>
-          <li><a href="/user/profile">Profile</a></li>
+        <ul class="header-ul">
+          <li><a href="/user/logout">LOG OUT</a></li>
+          <li><a href="/">PET CARE</a></li>
+          <li>
+            <a href="iotCheck.ejs"
+              >IoT Check <i class="fa-sharp fa-light fa-paw-simple"></i
+            ></a>
+          </li>
         </ul>
       </nav>
+      <div class="home-flex-container">
+        <div class="home-container">
+          <li><a href="/family/newFamily">Family</a></li>
+          <li><a href="/pet">Pet</a></li>
+          <li><a href="/user/profile">Profile</a></li>
+        </div>
+      </div>
     </header>
-    <main></main>
+    <div class="container">
+      <div class="bg-container">
+        <div class="bg-circle"></div>
+        <div class="bg-circle2"></div>
+      </div>
+      <div class="form-container">
+
+      </body>
+    </div>
     <script
       src="https://kit.fontawesome.com/c47a47dbc9.js"
       crossorigin="anonymous"
