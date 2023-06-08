@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    font-family: var(--ff);
+    margin:0;
+    padding:0;
+}
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bg-container {
+    position: absolute;
+    z-index: 0;
+}
+
+.bg-circle {
+    height: 1000px;
+    width: 1000px;
+    border-radius: 50%;
+    background-color: #a2c8f3;
+    position: fixed;
+    left: -200px;
+    top: -100px;
+    animation:moveCircle 100s infinite linear;
+    z-index: 0;
+}
+
+.bg-circle2 {
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background-color: #5fdaff;
+    position: fixed;
+    left: 1000px;
+    top: 300px;
+    animation:moveCircle2 100s infinite linear;
+    z-index: 1;
+}
+
+@keyframes moveCircle2{
+    0%{
+        transform: translate(0,-100px);
+    }
+    40%{
+        transform: translate(300px,400px);
+    }
+    100%{
+        transform: translate(0,-100px);
+    }
+}
+
+@keyframes moveCircle{
+    0%{
+        transform: translate(0,-100px);
+    }
+    20%{
+        transform: translate(-200px,-400px);
+    }
+    60%{
+        transform: translate(-800px,200px);
+    }
+    100%{
+        transform: translate(0,0px);
+    }
+}
+
+.form-container {
+    width: 1000px;
+    height: 550px;
+    display:flex;
+    box-shadow: var(--box-shadow);
+    position:fixed;
+    top:15%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 3;
+    justify-content: center;
+}
+
+.img-container{
+    position: relative;
+    z-index: 1;
+}
+
+.txtbox-in-img {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-65%,1100%);
+}
+
+.img-inside-container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-53%,-50%);
+    z-index: -1;
+}
+
+.loggedout-txtbox-in-img {
+    font-size: large;
+    position: flex;
+    top:80%;
+    left:-10%;
+}
+
+.loggedout-img-inside-container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-60%,-60%);
+    z-index: -1;
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}

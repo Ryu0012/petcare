@@ -25,13 +25,14 @@ app.use("/uploads", express.static("uploads"));
 //sesions
 app.use(
   session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    // secret: process.env.COOKIE_SECRET,
+    secret: "111",
+    resave: true,
+    saveUninitialized: true,
     cookie: {
       // maxAge: 7 * 24 * 60 * 60,
     },
-    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+    store: MongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.9.1" }),
   })
 );
 
