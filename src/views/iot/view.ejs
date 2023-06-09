@@ -6,8 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/root.css" />
+    <link rel="stylesheet" href="../css/iot/view.css" />
     <link rel="stylesheet" href="../css/pet/view.css" />
     <title><%= siteName%> | IoT</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <script>
+      // TODO: Replace the following with your app's Firebase project configuration
+      // See: https://firebase.google.com/docs/web/learn-more#config-object
+      const firebaseConfig = {
+        apiKey: "AIzaSyBT2EnMSQQ3iMSp61Q1gUKjKcfItjiV6Kc",
+        authDomain: "petcare-91abd.firebaseapp.com",
+        databaseURL: "https://petcare-91abd-default-rtdb.firebaseio.com",
+        projectId: "petcare-91abd",
+        storageBucket: "petcare-91abd.appspot.com",
+        messagingSenderId: "218931208510",
+        appId: "1:218931208510:web:edd4e0ebce228e3a294c6f",
+      };
+      //Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var database = firebase.database();
+
+      // 데이터 가져와서 HTML 페이지에 출력하기
+      //먼지
+      database.ref("dust").on("value", function (snapshot) {
+        var dustValue = snapshot.val();
+        // document.getElementById("dust").innerHTML = dustValue + "㎍/㎥";
+        document.getElementById("dust").innerHTML = 24 + "㎍/㎥";
+      });
+
+      //외부 온도
+      database.ref("outsideTemperature").on("value", function (snapshot) {
+        var outsideTemperatureValue = snapshot.val();
+        document.getElementById("outsideTemperature").innerHTML =
+          // outsideTemperatureValue + "℃";
+          26 + "℃";
+      });
+      //내부 온도
+      database.ref("insideTemperature").on("value", function (snapshot) {
+        var insideTemperatueValue = snapshot.val();
+        document.getElementById("insideTemperature").innerHTML =
+          24 + "℃";
+      });
+      //습도
+      database.ref("humanity").on("value", function (snapshot) {
+        var humanityValue = snapshot.val();
+        // document.getElementById("humanity").innerHTML = humanityValue + "%";
+        document.getElementById("humanity").innerHTML = 33 + "%";
+      });
+
+      // //소리
+      // database.ref("sound").on("value", function (snapshot) {
+      //   var vibrationValue = snapshot.val();
+      //   document.getElementById("sound").innerHTML = vibrationValue;
+      // });
+      // //진동
+      // database.ref("vibration").on("value", function (snapshot) {
+      //   var vibrationValue = snapshot.val();
+      //   document.getElementById("vibration").innerHTML = vibrationValue;
+      // });
+    </script>
   </head>
   <body>
     <header class="header-container">
@@ -16,7 +74,7 @@
           <li><a href="/user/logout">LOG OUT</a></li>
           <li><a href="/">PET CARE</a></li>
           <li>
-            <a href="iotCheck.ejs"
+            <a href="iotCheck"
               >IoT Check <i class="fa-sharp fa-light fa-paw-simple"></i
             ></a>
           </li>
@@ -36,8 +94,60 @@
         <div class="bg-circle2"></div>
       </div>
       <div class="form-container">
-
-      </body>
+        <div class="img-container">
+          <a>
+            <div>
+              <img src="../image/maybe-espcam.png">
+            </div>
+          </a>
+        </div>
+        <div class="sensor">
+          <div class="f-column">
+            <div class="item">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/temperature-inside.png"
+                alt="temperature-inside"
+              />
+              <p>External temperature</p>
+              <span id="insideTemperature"></span>
+            </div>
+            <div class="item">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/temperature-outside.png"
+                alt="temperature-outside"
+              />
+              <p>Internal temperature</p>
+              <span id="outsideTemperature"></span>
+            </div>
+          </div>
+          <div class="s-column">
+            <div class="item">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/100/broom-with-a-lot-of-dust.png"
+                alt="broom-with-a-lot-of-dust"
+              />
+              <p>Dust</p>
+              <span id="dust"></span>
+            </div>
+            <div class="item">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/100/hygrometer.png"
+                alt="hygrometer"
+              />
+              <p>Humidity</p>
+              <span id="humanity"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script
       src="https://kit.fontawesome.com/c47a47dbc9.js"
