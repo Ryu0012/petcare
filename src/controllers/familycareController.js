@@ -165,9 +165,14 @@ const updateFamilycare = (req, res) => {
 module.exports.updateFamilycare = updateFamilycare;
 
 import User from "../models/User";
-
+const url = "180.227.195.105:8080";
 export const getNewFamily = (req, res) => {
-  return res.render("family/newFamily");
+  const {
+    session: {
+      user: { name },
+    },
+  } = req;
+  return res.render("family/newFamily",{ name ,url });
 };
 
 export const postNew = async (req, res) => {

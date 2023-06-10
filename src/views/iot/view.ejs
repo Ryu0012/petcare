@@ -14,6 +14,29 @@
     <script>
       // TODO: Replace the following with your app's Firebase project configuration
       // See: https://firebase.google.com/docs/web/learn-more#config-object
+
+            // const firebaseConfig = {
+      //   apiKey: "AIzaSyALU-ybAh7WeOKnDjHNCHkwUtL0iNMh410",
+      //   authDomain: "esp32cam-5dd3a.firebaseapp.com",
+      //   databaseURL: "https://esp32cam-5dd3a-default-rtdb.firebaseio.com",
+      //   projectId: "esp32cam-5dd3a",
+      //   storageBucket: "esp32cam-5dd3a.appspot.com",
+      //   messagingSenderId: "719332087933",
+      //   appId: "1:719332087933:web:5cfa0d85e9fd12f3f0f914",
+      // };
+      //Initialize Firebase
+      // firebase.initializeApp(firebaseConfig);
+      // var database = firebase.database();
+
+      // database.ref("JSON").on("value", (snapshot) => {
+      //   var data = snapshot.val(); // 데이터
+      //   var ESP32CAMData = data.ESP32CAM; // "ESP32CAM" 프로퍼티 값
+      //   var imgElement = document.createElement("img"); // <img> 엘리먼트 생성
+      //   imgElement.src = ESP32CAMData; // "ESP32CAM" 프로퍼티 값 설정
+      //   imgElement.alt = "ESP32CAM 이미지"; // 대체 텍스트 설정
+      //   document.body.appendChild(imgElement); // <img> 엘리먼트를 <body>에 추가
+      // });
+
       const firebaseConfig = {
         apiKey: "AIzaSyBT2EnMSQQ3iMSp61Q1gUKjKcfItjiV6Kc",
         authDomain: "petcare-91abd.firebaseapp.com",
@@ -93,7 +116,10 @@
         <div class="img-container">
           <a>
             <div>
-              <img src="../image/maybe-espcam.png">
+              <img
+              src="data:image/jpeg;base64,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"
+              alt="디코딩된 이미지 파일"
+            />
             </div>
           </a>
         </div>

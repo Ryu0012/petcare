@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/root.css" />
+    <!-- <link rel="stylesheet" href="../css/pet/view.css" /> -->
+    <link rel="stylesheet" href="../css/user/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  </head>
+  <body>
+    <header class="header-container">
+      <nav>
+        <ul class="header-ul">
+          <li><a href="/user/logout">LOG OUT</a></li>
+          <li><a href="/">PET CARE</a></li>
+          <li></li>
+        </ul>
+      </nav>
+      <div class="home-flex-container">
+        <div class="home-container">
+          <li><a href="/family/newFamily">Family</a></li>
+          <li><a href="/iot">Iot</a></li>
+          <li><a href="/user/profile">Profile</a></li>
+          <li><a href="/pet">Pet</a></li>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="bg-container">
+        <div class="bg-circle"></div>
+        <div class="bg-circle2"></div>
+      </div>
+      <div class="form-container">
+        <body>
+          <div
+            class="swiper-container mySwiper swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden"
+          >
+            <div
+              class="swiper-wrapper"
+              id="swiper-wrapper-5c398eb2c4b2f6ea"
+              aria-live="polite"
+            >
+              <div
+                class="swiper-slide swiper-slide-visible swiper-slide-active"
+                role="group"
+                aria-label="1 / 4"
+                style="
+                  width: 815px;
+                  opacity: 1;
+                  transform: translate3d(0px, 0px, 0px);
+                "
+              >
+                <a href="../pet/upload">
+                  <img
+                    src="/<%= pets[0].avatarUrl %>"
+                    alt="반려동물을 등록해주세요!"
+                    width="200"
+                    height="400"
+                  />
+                </a>
+              </div>
+              <div
+                class="swiper-slide swiper-slide-next"
+                role="group"
+                aria-label="2 / 4"
+                style="
+                  width: 815px;
+                  opacity: 0;
+                  transform: translate3d(-815px, 0px, 0px);
+                "
+              >
+                <img onerror="this.onerror=null; this.src='../image/temp img1.jpg'" height="400" src="#" />
+              </div>
+              <div
+                class="swiper-slide"
+                role="group"
+                aria-label="3 / 4"
+                style="
+                  width: 815px;
+                  opacity: 0;
+                  transform: translate3d(-1630px, 0px, 0px);
+                "
+              >
+                <img
+                  src="#"
+                  onerror="this.onerror=null; this.src='../image/temp img2.jpg';"
+                  height="400"
+                />
+              </div>
+              <div
+                class="swiper-slide"
+                role="group"
+                aria-label="4 / 4"
+                style="
+                  width: 815px;
+                  opacity: 0;
+                  transform: translate3d(-2445px, 0px, 0px);
+                "
+              >
+                <img
+                  src="#"
+                  onerror="this.onerror=null; this.src='../image/temp img3.jpg';"
+                  height="400"
+                />
+              </div>
+            </div>
+            <div
+              class="swiper-button-next"
+              tabindex="0"
+              role="button"
+              aria-label="Next slide"
+              aria-controls="swiper-wrapper-5c398eb2c4b2f6ea"
+              aria-disabled="false"
+            ></div>
+            <div
+              class="swiper-button-prev swiper-button-disabled"
+              tabindex="-1"
+              role="button"
+              aria-label="Previous slide"
+              aria-controls="swiper-wrapper-5c398eb2c4b2f6ea"
+              aria-disabled="true"
+            ></div>
+            <div
+              class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
+            >
+              <span
+                class="swiper-pagination-bullet swiper-pagination-bullet-active"
+                tabindex="0"
+                role="button"
+                aria-label="Go to slide 1"
+                aria-current="true"
+              ></span
+              ><span
+                class="swiper-pagination-bullet"
+                tabindex="0"
+                role="button"
+                aria-label="Go to slide 2"
+              ></span
+              ><span
+                class="swiper-pagination-bullet"
+                tabindex="0"
+                role="button"
+                aria-label="Go to slide 3"
+              ></span
+              ><span
+                class="swiper-pagination-bullet"
+                tabindex="0"
+                role="button"
+                aria-label="Go to slide 4"
+              ></span>
+            </div>
+            <span
+              class="swiper-notification"
+              aria-live="assertive"
+              aria-atomic="true"
+            ></span>
+          </div>
+        </body>
+      </div>
+    </div>
+    <script src="../css/pet/js/swiper.js"></script>
+  </body>
+</html>
